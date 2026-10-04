@@ -20,6 +20,8 @@ func hurt(hit_data:HitData) -> int:
 	var damage : =0
 	
 	damage = hit_data.damage - defese
+	Log.debug(&"combat", "Damage calculated", {"raw_damage": hit_data.damage, "defense": defese, "final_damage": damage})
 	
+	Log.info(&"combat", "Damage received", {"damage": damage})
 	damaged.emit(damage)
 	return damage

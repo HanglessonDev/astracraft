@@ -28,24 +28,29 @@ var angular_direction := 0.0
 ## and emits [signal thrust_started].
 func start() -> void:
 	linear_direction = Vector2.RIGHT
+	Log.info(&"ship", "Thrust started")
 	thrust_started.emit()
 
 ## Stops forward thrust and emits [signal thrust_stopped].
 func stop() -> void:
 	linear_direction = Vector2.ZERO
+	Log.info(&"ship", "Thrust stopped")
 	thrust_stopped.emit()
 
 ## Sets angular direction to turn left (counter-clockwise).
 func turn_left()-> void:
 	angular_direction = -1
+	Log.debug(&"ship", "Turn left started")
 
 ## Sets angular direction to turn right (clockwise).
 func turn_right()-> void:
 	angular_direction = 1
+	Log.debug(&"ship", "Turn right started")
 
 ## Stops angular rotation by resetting angular direction to zero.
 func stop_spin()-> void:
 	angular_direction = 0
+	Log.debug(&"ship", "Turn stopped")
 
 ## Integrates [member linear_acceleration] and [member angular_acceleration]
 ## into the body's velocities each physics frame.

@@ -33,10 +33,16 @@ const ACTION_FIRE: StringName = &"fire"
 ## @param node The node to check for team membership
 ## @return true if the node is in the player_team group
 static func is_player_team(node: Node) -> bool:
-	return node != null and node.is_in_group(PLAYER_TEAM)
+	if node == null:
+		Log.warn(&"config", "is_player_team called with null node")
+		return false
+	return node.is_in_group(PLAYER_TEAM)
 	
 ## Checks if a node belongs to the enemy team.
 ## @param node The node to check for team membership  
 ## @return true if the node is in the enemy_team group
 static func is_enemy_team(node: Node) -> bool:
-	return node != null and node.is_in_group(ENEMY_TEAM)
+	if node == null:
+		Log.warn(&"config", "is_enemy_team called with null node")
+		return false
+	return node.is_in_group(ENEMY_TEAM)

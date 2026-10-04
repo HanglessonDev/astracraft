@@ -26,6 +26,7 @@ signal fired_finished
 ## @param new_value True to start firing, false to stop
 func set_firing(new_value:bool) -> void:
 	firing = new_value
+	Log.debug(&"weapon", "Firing state changed", {"firing": firing})
 	if firing:
 		fire()
 	else:
@@ -35,6 +36,7 @@ func set_firing(new_value:bool) -> void:
 func fire() -> void:
 	var bullet := spawner.create(weapon_stats.bullet_packed_scene) as Bullet2D
 	bullet.global_rotation = global_rotation
+	Log.debug(&"weapon", "Bullet fired", {"at": [bullet.global_position.x, bullet.global_position.y]})
 	
 	timer.start(1.0 / weapon_stats.fire_rate)
 	fired.emit()
@@ -45,11 +47,13 @@ func start() -> void:
 		return
 		
 	firing = true
+	Log.info(&"weapon", "Weapon firing started")
 	fire_started.emit()
 
 ## Stops the weapon firing sequence.
 func stop() -> void:
 	firing = false
+	Log.info(&"weapon", "Weapon firing stopped")
 	fire_stopped.emit()
 
 ## Called when the firing timer completes. Fires next shot or stops firing.
