@@ -23,7 +23,7 @@ most project knowledge is distilled here so you don't burn tokens on discovery.
 1. `git bisect start`, marque o ruim: `git bisect bad`, e um commit sabidamente bom: `git bisect good <sha>` (o SHA vem do CHANGELOG).
 2. Em cada passo rode a suite; marque `git bisect good|bad` conforme o resultado.
 3. Ou automatize (a suite retorna exit ≠ 0 em falha):
-  `git bisect run <comando-da-suite-no-Verify>`
+   `git bisect run <comando-da-suite-no-Verify>`
 4. Achou o culpado: `git show <sha>`; encerre com `git bisect reset`.
 5. Atalho: `git log --oneline -- <arquivo>` lista quem mexeu num arquivo específico.
 
@@ -74,24 +74,24 @@ most project knowledge is distilled here so you don't burn tokens on discovery.
 
 ## Key files
 
-| What | Where |
-|---|---|
-| Central consts (groups, actions) | `Source/Core/GameConfig.gd` |
-| Ship physics | `Source/Spaceship/Spaceship2d.gd` |
-| Firing / bullets | `Source/Systems/Weapon/Weapon2D.gd`, `Bullet2D.gd` |
-| Spawn + container resolution | `Source/Systems/Spawner/Spawner2D.gd` |
-| Damage | `Source/Systems/Combat/HitArea2D.gd`, `HurtArea2D.gd`, `HitData.gd` |
-| Player wiring | `Source/Actors/Player/Player.tscn`, `KeyboardSpaceshipController.gd`, `KeyboardWeaponController.gd` |
-| Level (owns `Bullets` container) | `Source/Levels/Playeground.tscn` |
+| What                             | Where                                                                                               |
+| -------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Central consts (groups, actions) | `Source/Core/GameConfig.gd`                                                                         |
+| Ship physics                     | `Source/Spaceship/Spaceship2d.gd`                                                                   |
+| Firing / bullets                 | `Source/Systems/Weapon/Weapon2D.gd`, `Bullet2D.gd`                                                  |
+| Spawn + container resolution     | `Source/Systems/Spawner/Spawner2D.gd`                                                               |
+| Damage                           | `Source/Systems/Combat/HitArea2D.gd`, `HurtArea2D.gd`, `HitData.gd`                                 |
+| Player wiring                    | `Source/Actors/Player/Player.tscn`, `KeyboardSpaceshipController.gd`, `KeyboardWeaponController.gd` |
+| Level (owns `Bullets` container) | `Source/Levels/Playeground.tscn`                                                                    |
 
 ## Orchestration (subagents)
 
 Four workers in `~/.config/opencode/agent/`, two roles × two models:
 
-| Agent | Role | Model |
-|---|---|---|
-| `scout-glimmer` / `scout-glm` | Read-only exploration, DONE with `file:line` evidence, zero writes | Glimmer-30B (NVIDIA) / GLM-4.5-Flash |
-| `builder-glimmer` / `builder-glm` | Scoped edits + verification, DONE with files changed + evidence | Glimmer-30B (NVIDIA) / GLM-4.5-Flash |
+| Agent                             | Role                                                               | Model                                |
+| --------------------------------- | ------------------------------------------------------------------ | ------------------------------------ |
+| `scout-glimmer` / `scout-glm`     | Read-only exploration, DONE with `file:line` evidence, zero writes | Glimmer-30B (NVIDIA) / GLM-4.5-Flash |
+| `builder-glimmer` / `builder-glm` | Scoped edits + verification, DONE with files changed + evidence    | Glimmer-30B (NVIDIA) / GLM-4.5-Flash |
 
 Dispatch rules (API limits — hard constraints, not preferences):
 
@@ -124,3 +124,29 @@ Orchestrator protocol:
   restore in `after_test` (see the lib's own `tests/test_log.gd`).
 - Lib suites live with the lib (`Source/Debug/Log/tests/`) — pass an extra
   `-a "res://Source/Debug/Log/tests"` to run them headless.
+
+<!-- BACKLOG.MD GUIDELINES START -->
+<!-- backlog.md-instructions-version: 1.51.0 -->
+
+<CRITICAL_INSTRUCTION>
+
+## Backlog.md Workflow
+
+This project uses Backlog.md for task and project management.
+
+**At the beginning of each conversation in this project, run `backlog instructions overview` before answering or taking action. Re-read it only if you have not read it yet in the current conversation.**
+
+Use the overview to decide whether to search, read, create, or update Backlog tasks.
+
+Before task lifecycle actions, read the matching detailed guide:
+
+- `backlog instructions task-creation` before creating or splitting tasks
+- `backlog instructions task-execution` before planning, changing status or assignee, adding a plan or implementation notes, or implementing task work
+- `backlog instructions task-finalization` before checking acceptance criteria, writing final summaries, or moving tasks to terminal statuses
+
+Use `backlog <command> --help` before running unfamiliar commands. Help shows options, fields, and examples.
+
+Do not edit Backlog task, draft, document, decision, or milestone markdown files directly. Use the `backlog` CLI so metadata, relationships, and history stay consistent.
+
+</CRITICAL_INSTRUCTION>
+<!-- BACKLOG.MD GUIDELINES END -->
