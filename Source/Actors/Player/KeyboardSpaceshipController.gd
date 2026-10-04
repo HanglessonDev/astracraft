@@ -23,18 +23,25 @@ extends Node
 ## @param event The input event to process
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(action_thrust):
+		Log.debug(&"input", "Thrust pressed", {"action": String(action_thrust)})
 		spaceship.start()
 	elif event.is_action_released(action_thrust):
+		Log.debug(&"input", "Thrust released", {"action": String(action_thrust)})
 		spaceship.stop()
 	
 	if event.is_action_pressed(action_turn_left):
+		Log.debug(&"input", "Turn left pressed", {"action": String(action_turn_left)})
 		spaceship.turn_left()
 	
 	if event.is_action_pressed(action_turn_right):
+		Log.debug(&"input", "Turn right pressed", {"action": String(action_turn_right)})
 		spaceship.turn_right()
 	
 ## Stops ship spinning when no turn input is active.
+## Guarded by angular_direction so stop_spin() (and its log) fires once per
+## release instead of every physics frame.
 func _physics_process(_delta: float) -> void:
 	if not Input.is_action_pressed(action_turn_left) and not Input.is_action_pressed(action_turn_right):
-		spaceship.stop_spin()
+		if spaceship.angular_direction != 0.0:
+			spaceship.stop_spin()
 		

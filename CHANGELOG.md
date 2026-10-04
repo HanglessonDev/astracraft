@@ -24,5 +24,6 @@ Formato: novas entradas no topo, em `## [Unreleased]` até a release.
 ### Adicionado
 - Lib de logging em `Source/Debug/Log/` (`Log` estático, sem autoload).
 - Testes gdUnit4: `test/unit/test_bullet2d.gd` (6 casos),
-  `test/unit/test_spawner2d.gd` (5 casos).
+  `test/unit/test_spawner2d.gd` (5 casos),
+  `test/unit/test_weapon2d.gd` (3 casos: suporte a multiplas armas).
 - `AGENTS.md` (toolchain, verify, convenções, orquestração) e este changelog.

@@ -13,8 +13,12 @@ signal hit_landed(damage)
 ## Processes a hit when colliding with a hurt area.
 ## @param hurt_area The hurt area that was hit
 func hit(hurt_area: HurtArea2D) -> void:
-	if not hurt_area.team == hit_data.team:
-		hit_landed.emit(hurt_area.hurt(hit_data))
+	if hurt_area.team == hit_data.team:
+		Log.debug(&"combat", "Friendly fire blocked", {"hit_team": String(hit_data.team), "hurt_team": String(hurt_area.team)})
+		return
+	var damage := hurt_area.hurt(hit_data)
+	Log.info(&"combat", "Hit landed", {"damage": damage})
+	hit_landed.emit(damage)
 
 ## Called when an area enters this hit area.
 ## @param hurt_area The hurt area that entered this hit area

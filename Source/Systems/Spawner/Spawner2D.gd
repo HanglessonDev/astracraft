@@ -29,6 +29,11 @@ func create(_product_packed_scene:= product_packed_scene) -> Node2D:
 	product.global_position = global_position
 	product.global_rotation = global_rotation
 
+	if target == self:
+		Log.warn(&"spawner", "Spawned under self; no container or group found", {"scene": _product_packed_scene.resource_path.get_file()})
+	else:
+		Log.debug(&"spawner", "Product spawned", {"scene": _product_packed_scene.resource_path.get_file(), "container": String(target.get_path())})
+
 	created.emit(product)
 	return product
 
