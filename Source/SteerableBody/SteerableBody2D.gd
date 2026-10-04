@@ -1,4 +1,4 @@
-class_name SpaceShip2D
+class_name SteerableBody2D
 extends RigidBody2D
 
 ## A physics-driven 2D spaceship that steers by accelerating its own

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://xl0itenii02j"]
 
-[ext_resource type="PackedScene" uid="uid://cp248ersa428j" path="res://Source/Spaceship/Spaceship2D.tscn" id="1_ytlwm"]
+[ext_resource type="PackedScene" uid="uid://cp248ersa428j" path="res://Source/SteerableBody/SteerableBody2D.tscn" id="1_ytlwm"]
 [ext_resource type="Script" uid="uid://bmah0tmifxca6" path="res://Source/Actors/Player/KeyboardSpaceshipController.gd" id="2_8mkyk"]
 [ext_resource type="Texture2D" uid="uid://ds2d20qtmm65d" path="res://Assets/Images/Dev/player_ship_placeholder_512.png" id="2_hk4yk"]
 [ext_resource type="Script" uid="uid://di6vfgvqfqb5y" path="res://Source/Systems/Combat/HurtArea2D.gd" id="4_00tdp"]

@@ -1,10 +1,10 @@
 class_name KeyboardSpaceshipController
 extends Node
 
-## Controller that maps keyboard input actions to a [SpaceShip2D] instance.
+## Controller that maps keyboard input actions to a [SteerableBody2D] instance.
 
 ## The spaceship instance that receives thrust and rotation commands.
-@export var spaceship: SpaceShip2D
+@export var spaceship: SteerableBody2D
 
 ## Group for keyboard input actions.
 @export_group("KeyActions","action")
