@@ -14,6 +14,18 @@ most project knowledge is distilled here so you don't burn tokens on discovery.
 - Trunk curto: branch `task-<assunto>`, merge `--no-ff` na `main`.
 - Sem commit direto na `main`.
 - Commit/merge SOMENTE com pedido explícito. Commit escopado: só arquivos do trabalho atual (`git status` antes de `git add`).
+- CHANGELOG rastreável: toda entrada commitada carrega o SHA curto (`git show <sha>`).
+  O orquestrador anota o SHA no momento do commit/merge, nunca à mão.
+  Entradas ainda não commitadas ficam sem SHA até o merge.
+
+## Bisect (achar o commit culpado)
+
+1. `git bisect start`, marque o ruim: `git bisect bad`, e um commit sabidamente bom: `git bisect good <sha>` (o SHA vem do CHANGELOG).
+2. Em cada passo rode a suite; marque `git bisect good|bad` conforme o resultado.
+3. Ou automatize (a suite retorna exit ≠ 0 em falha):
+  `git bisect run <comando-da-suite-no-Verify>`
+4. Achou o culpado: `git show <sha>`; encerre com `git bisect reset`.
+5. Atalho: `git log --oneline -- <arquivo>` lista quem mexeu num arquivo específico.
 
 ## Verify (headless)
 
