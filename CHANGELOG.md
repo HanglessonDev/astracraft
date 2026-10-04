@@ -11,7 +11,7 @@ Toda entrada commitada carrega o SHA curto do commit (`git show <sha>`)
   com vetor já rotacionado — rotação aplicada 2×, a 180° a bala saía para
   trás. Agora move via `global_position`. (`24deaa0`)
 - **Bala presa à nave**: `Spawner2D` procurava ancestral `"Level"`
-  (inexistente — a fase é `Playeground`) e o fallback parentiava a bala
+  (inexistente — a fase é `Playground`) e o fallback parentiava a bala
   no próprio spawner, filho da nave. Resolução agora é híbrida:
   `@export container` → grupo `GameConfig.BULLET_CONTAINER` →
   cena atual → próprio nó; copia posição e rotação globais no spawn.

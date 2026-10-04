@@ -34,7 +34,7 @@ most project knowledge is distilled here so you don't burn tokens on discovery.
 & "E:\Godot\Godot_v4.7.2-stable_win64.exe" --headless --path "F:\GitHub\Godot\astracraft" -s "res://addons/gdUnit4/bin/GdUnitCmdTool.gd" -a "res://test/unit" -a "res://Source/Debug/Log/tests" --ignoreHeadlessMode
 
 # Smoke test: run Playground 120 frames, expect zero ERROR/WARNING
-& "E:\Godot\Godot_v4.7.2-stable_win64.exe" --headless --path "F:\GitHub\Godot\astracraft" --scene "res://Source/Levels/Playeground.tscn" --quit-after 120
+& "E:\Godot\Godot_v4.7.2-stable_win64.exe" --headless --path "F:\GitHub\Godot\astracraft" --scene "res://Source/Levels/Playground.tscn" --quit-after 120
 ```
 
 ## Tests (`test/unit/`)
@@ -82,7 +82,7 @@ most project knowledge is distilled here so you don't burn tokens on discovery.
 | Spawn + container resolution     | `Source/Systems/Spawner/Spawner2D.gd`                                                               |
 | Damage                           | `Source/Systems/Combat/HitArea2D.gd`, `HurtArea2D.gd`, `HitData.gd`                                 |
 | Player wiring                    | `Source/Actors/Player/Player.tscn`, `KeyboardSpaceshipController.gd`, `KeyboardWeaponController.gd` |
-| Level (owns `Bullets` container) | `Source/Levels/Playeground.tscn`                                                                    |
+| Level (owns `Bullets` container) | `Source/Levels/Playground.tscn`                                                                    |
 
 ## Orchestration (subagents)
 
