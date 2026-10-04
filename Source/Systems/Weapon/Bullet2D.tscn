@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://mvpr0x1dbcpk"]
+
+[ext_resource type="Script" uid="uid://c18rcco1mgkmi" path="res://Source/Systems/Combat/HitArea2D.gd" id="1_5hgtw"]
+[ext_resource type="Script" uid="uid://jtgvgynq584m" path="res://Source/Systems/Weapon/Bullet2D.gd" id="1_ik1nm"]
+
+[node name="Bullet2D" type="Node2D" unique_id=1600367645]
+script = ExtResource("1_ik1nm")
+
+[node name="HitArea2D" type="Area2D" parent="." unique_id=669521496]
+script = ExtResource("1_5hgtw")
+metadata/_custom_type_script = "uid://c18rcco1mgkmi"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1482728338]
+
+[connection signal="hit_landed" from="HitArea2D" to="." method="queue_free" unbinds=1]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="queue_free"]

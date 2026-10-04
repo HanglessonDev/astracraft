@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dv8bt81ht4kev"]
+
+[ext_resource type="Script" uid="uid://c18rcco1mgkmi" path="res://Source/Systems/Combat/HitArea2D.gd" id="1_dq2ec"]
+
+[node name="HitArea2D" type="Area2D" unique_id=374486296]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_dq2ec")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,100 @@
+/*imagens para o futuro*/
+/*<img src="https://www.serebii.net/battletrozei/pokemon/427.png" width="64"/>*/
+
+img[alt^="type-"] {
+  width: 26px !important;
+  height: 26px !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin: 0 2px !important;
+}
+
+/* Tamanhos alternativos */
+img[alt$="-sm"] {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+img[alt$="-lg"] {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+img[alt$="-xl"] {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+/* TIPOS PADRÃO (26px) */
+img[alt="type-normal"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/normal.svg"); }
+img[alt="type-fighting"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/fighting.svg"); }
+img[alt="type-flying"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/flying.svg"); }
+img[alt="type-poison"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/poison.svg"); }
+img[alt="type-ground"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/ground.svg"); }
+img[alt="type-rock"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/rock.svg"); }
+img[alt="type-bug"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/bug.svg"); }
+img[alt="type-ghost"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/ghost.svg"); }
+img[alt="type-steel"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/steel.svg"); }
+img[alt="type-fire"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/fire.svg"); }
+img[alt="type-water"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/water.svg"); }
+img[alt="type-grass"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/grass.svg"); }
+img[alt="type-electric"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/electric.svg"); }
+img[alt="type-psychic"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/psychic.svg"); }
+img[alt="type-ice"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/ice.svg"); }
+img[alt="type-dragon"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/dragon.svg"); }
+img[alt="type-dark"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/dark.svg"); }
+img[alt="type-fairy"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/fairy.svg"); }
+
+/* VARIAÇÕES DE TAMANHO */
+img[alt="type-normal-sm"], img[alt="type-normal-lg"], img[alt="type-normal-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/normal.svg"); }
+img[alt="type-fighting-sm"], img[alt="type-fighting-lg"], img[alt="type-fighting-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/fighting.svg"); }
+img[alt="type-flying-sm"], img[alt="type-flying-lg"], img[alt="type-flying-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/flying.svg"); }
+img[alt="type-poison-sm"], img[alt="type-poison-lg"], img[alt="type-poison-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/poison.svg"); }
+img[alt="type-ground-sm"], img[alt="type-ground-lg"], img[alt="type-ground-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/ground.svg"); }
+img[alt="type-rock-sm"], img[alt="type-rock-lg"], img[alt="type-rock-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/rock.svg"); }
+img[alt="type-bug-sm"], img[alt="type-bug-lg"], img[alt="type-bug-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/bug.svg"); }
+img[alt="type-ghost-sm"], img[alt="type-ghost-lg"], img[alt="type-ghost-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/ghost.svg"); }
+img[alt="type-steel-sm"], img[alt="type-steel-lg"], img[alt="type-steel-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/steel.svg"); }
+img[alt="type-fire-sm"], img[alt="type-fire-lg"], img[alt="type-fire-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/fire.svg"); }
+img[alt="type-water-sm"], img[alt="type-water-lg"], img[alt="type-water-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/water.svg"); }
+img[alt="type-grass-sm"], img[alt="type-grass-lg"], img[alt="type-grass-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/grass.svg"); }
+img[alt="type-electric-sm"], img[alt="type-electric-lg"], img[alt="type-electric-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/electric.svg"); }
+img[alt="type-psychic-sm"], img[alt="type-psychic-lg"], img[alt="type-psychic-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/psychic.svg"); }
+img[alt="type-ice-sm"], img[alt="type-ice-lg"], img[alt="type-ice-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/ice.svg"); }
+img[alt="type-dragon-sm"], img[alt="type-dragon-lg"], img[alt="type-dragon-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/dragon.svg"); }
+img[alt="type-dark-sm"], img[alt="type-dark-lg"], img[alt="type-dark-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/dark.svg"); }
+img[alt="type-fairy-sm"], img[alt="type-fairy-lg"], img[alt="type-fairy-xl"] { content: url("https://www.lmcorp.com.br/arquivos/img/assets/tcg_2/icons/types/fairy.svg"); }
+
+/*Badges dos ginásios*/
+img[alt^="gym-"] {
+  width: 26px !important;
+  height: 26px !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin: 0 2px !important;
+}
+
+/* Tamanhos alternativos */
+img[alt$="-sm"] {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+img[alt$="-lg"] {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+img[alt$="-xl"] {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+img[alt="gym-stone"], img[alt="gym-stone-sm"],img[alt="gym-stone-lg"], img[alt="gym-stone-xl"] { content: url("https://archives.bulbagarden.net/media/upload/6/63/Stone_Badge.png"); }
+img[alt="gym-knuckle"], img[alt="gym-knuckle-sm"], img[alt="gym-knuckle-lg"], img[alt="gym-knuckle-xl"] { content: url("https://archives.bulbagarden.net/media/upload/9/97/Knuckle_Badge.png"); }
+img[alt="gym-dynamo"], img[alt="gym-dynamo-sm"], img[alt="gym-dynamo-lg"], img[alt="gym-dynamo-xl"] { content: url("https://archives.bulbagarden.net/media/upload/3/34/Dynamo_Badge.png"); }
+img[alt="gym-heat"], img[alt="gym-heat-sm"], img[alt="gym-heat-lg"], img[alt="gym-heat-xl"] { content: url("https://archives.bulbagarden.net/media/upload/c/c4/Heat_Badge.png"); }
+img[alt="gym-balance"], img[alt="gym-balance-sm"], img[alt="gym-balance-lg"], img[alt="gym-balance-xl"] { content: url("https://archives.bulbagarden.net/media/upload/6/63/Balance_Badge.png"); }
+img[alt="gym-feather"], img[alt="gym-feather-sm"], img[alt="gym-feather-lg"], img[alt="gym-feather-xl"] { content: url("https://archives.bulbagarden.net/media/upload/6/62/Feather_Badge.png"); }
+img[alt="gym-mind"], img[alt="gym-mind-sm"], img[alt="gym-mind-lg"], img[alt="gym-mind-xl"] { content: url("https://archives.bulbagarden.net/media/upload/c/cc/Mind_Badge.png"); }
+img[alt="gym-rain"], img[alt="gym-rain-sm"], img[alt="gym-rain-lg"], img[alt="gym-rain-xl"] { content: url("https://archives.bulbagarden.net/media/upload/9/9b/Rain_Badge.png"); }

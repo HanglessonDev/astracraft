@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://xl0itenii02j"]
+
+[ext_resource type="PackedScene" uid="uid://cp248ersa428j" path="res://Source/Spaceship/Spaceship2D.tscn" id="1_ytlwm"]
+[ext_resource type="Script" uid="uid://bmah0tmifxca6" path="res://Source/Actors/Player/KeyboardSpaceshipController.gd" id="2_8mkyk"]
+[ext_resource type="Texture2D" uid="uid://ds2d20qtmm65d" path="res://Assets/Images/Dev/player_ship_placeholder_512.png" id="2_hk4yk"]
+[ext_resource type="Script" uid="uid://di6vfgvqfqb5y" path="res://Source/Systems/Combat/HurtArea2D.gd" id="4_00tdp"]
+[ext_resource type="PackedScene" uid="uid://de7uf2184m7wl" path="res://Source/Systems/Weapon/Weapon2D.tscn" id="4_om7ne"]
+[ext_resource type="PackedScene" uid="uid://c24p06s5pyl1x" path="res://Source/Prefabs/DevBullet2D.tscn" id="5_egwhy"]
+[ext_resource type="Script" uid="uid://d3smiw7ey3ilo" path="res://Source/Systems/Weapon/WeaponStats.gd" id="6_cebaj"]
+[ext_resource type="Script" uid="uid://c35rpxbwegl7e" path="res://Source/Actors/Player/KeyboardWeaponController.gd" id="8_egwhy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ifow5"]
+radius = 152.0
+
+[sub_resource type="Resource" id="Resource_6rlm8"]
+script = ExtResource("6_cebaj")
+fire_rate = 5.0
+bullet_packed_scene = ExtResource("5_egwhy")
+metadata/_custom_type_script = "uid://d3smiw7ey3ilo"
+
+[node name="Player" type="Node2D" unique_id=788517319]
+
+[node name="Spaceship2D" parent="." unique_id=1387274257 instance=ExtResource("1_ytlwm")]
+
+[node name="Collision" type="CollisionPolygon2D" parent="Spaceship2D" unique_id=1810784746]
+scale = Vector2(0.25, 0.25)
+polygon = PackedVector2Array(233, -18, 104, -73, -28, -98, -106, -150, -205, -85, -205, 85, -106, 150, -28, 98, 104, 73, 233, 18)
+
+[node name="HurtArea2D" type="Area2D" parent="Spaceship2D" unique_id=1525878717]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("4_00tdp")
+team = &"player_team"
+metadata/_custom_type_script = "uid://di6vfgvqfqb5y"
+
+[node name="Area" type="CollisionShape2D" parent="Spaceship2D/HurtArea2D" unique_id=956919577]
+position = Vector2(-84, 0)
+shape = SubResource("CircleShape2D_ifow5")
+debug_color = Color(0.90863484, 0.0001180166, 0.7377995, 0.41960785)
+
+[node name="Sprite" type="Sprite2D" parent="Spaceship2D" unique_id=1991271933]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_hk4yk")
+
+[node name="RTCollision" type="RemoteTransform2D" parent="Spaceship2D/Sprite" unique_id=1125328279]
+remote_path = NodePath("../../Collision")
+
+[node name="RTHurtArea" type="RemoteTransform2D" parent="Spaceship2D/Sprite" unique_id=981835745]
+remote_path = NodePath("../../HurtArea2D")
+
+[node name="Weapon2D" parent="Spaceship2D" unique_id=330528176 instance=ExtResource("4_om7ne")]
+position = Vector2(0, -27)
+weapon_stats = SubResource("Resource_6rlm8")
+
+[node name="Weapon2D2" parent="Spaceship2D" unique_id=1216690554 instance=ExtResource("4_om7ne")]
+position = Vector2(0, 27)
+weapon_stats = SubResource("Resource_6rlm8")
+
+[node name="KeyboardSpaceshipController" type="Node" parent="." unique_id=1037413456 node_paths=PackedStringArray("spaceship")]
+script = ExtResource("2_8mkyk")
+spaceship = NodePath("../Spaceship2D")
+metadata/_custom_type_script = "uid://bmah0tmifxca6"
+
+[node name="KeyboardWeaponController" type="Node" parent="." unique_id=1107560668 node_paths=PackedStringArray("weapons")]
+script = ExtResource("8_egwhy")
+weapons = [NodePath("../Spaceship2D/Weapon2D"), NodePath("../Spaceship2D/Weapon2D2")]

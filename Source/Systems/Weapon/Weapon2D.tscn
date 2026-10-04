@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://de7uf2184m7wl"]
+
+[ext_resource type="Script" uid="uid://n14u65sqigio" path="res://Source/Systems/Weapon/Weapon2D.gd" id="1_be046"]
+[ext_resource type="Script" uid="uid://ebg7626vwdkn" path="res://Source/Systems/Spawner/Spawner2D.gd" id="1_tlfrn"]
+
+[node name="Weapon2D" type="Node2D" unique_id=330528176]
+script = ExtResource("1_be046")
+
+[node name="Spawner2D" type="Node2D" parent="." unique_id=1568184667]
+unique_name_in_owner = true
+script = ExtResource("1_tlfrn")
+metadata/_custom_type_script = "uid://ebg7626vwdkn"
+
+[node name="Timer" type="Timer" parent="." unique_id=975340220]
+unique_name_in_owner = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=842171892]
+unique_name_in_owner = true
+
+[connection signal="fired" from="." to="AudioStreamPlayer2D" method="play"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

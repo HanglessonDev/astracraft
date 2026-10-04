@@ -1,0 +1,15 @@
+{
+  "baseFontSize": 16,
+  "accentColor": "",
+  "translucency": false,
+  "monospaceFontFamily": "JetBrains Mono",
+  "cssTheme": "Quillcode",
+  "enabledCssSnippets": [
+    "markdown-with-view",
+    "pokemon-type-icons"
+  ],
+  "showRibbon": false,
+  "interfaceFontFamily": "JetBrains Mono",
+  "textFontFamily": "JetBrains Mono",
+  "baseFontSizeAction": true
+}

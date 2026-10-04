@@ -1,0 +1,23 @@
+[
+  "templater-obsidian",
+  "obsidian-outliner",
+  "cm-editor-syntax-highlight-obsidian",
+  "dataview",
+  "table-editor-obsidian",
+  "calendar",
+  "obsidian-admonition",
+  "tag-wrangler",
+  "obsidian-dictionary-plugin",
+  "obsidian-emoji-toolbar",
+  "obsidian-advanced-uri",
+  "quick-latex",
+  "obsidian-local-rest-api",
+  "obsidian-image-toolkit",
+  "url-into-selection",
+  "obsidian-charts",
+  "any-block",
+  "obsidian-chartsview-plugin",
+  "tray",
+  "obsidian-linter",
+  "gdscript-syntax-highlighting"
+]

@@ -1,0 +1,39 @@
+{
+  "userAdmonitions": {
+    "ref": {
+      "type": "ref",
+      "color": "rgb(28, 94, 202)",
+      "icon": {
+        "name": "book-open",
+        "type": "fas"
+      },
+      "command": false,
+      "title": "Referências",
+      "injectColor": true,
+      "noTitle": false,
+      "copy": false
+    }
+  },
+  "syntaxHighlight": false,
+  "copyButton": true,
+  "version": "12.0.7",
+  "autoCollapse": false,
+  "defaultCollapseType": "open",
+  "injectColor": true,
+  "parseTitles": true,
+  "dropShadow": true,
+  "hideEmpty": false,
+  "icons": [
+    "fas"
+  ],
+  "rpgDownloadedOnce": false,
+  "useSnippet": false,
+  "snippetPath": "custom-admonitions.6764c8",
+  "open": {
+    "admonitions": true,
+    "icons": true,
+    "other": true,
+    "advanced": false
+  },
+  "useFontAwesome": false
+}

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b6uplrpxybxmt"]
+
+[ext_resource type="Script" uid="uid://ebg7626vwdkn" path="res://Source/Systems/Spawner/Spawner2D.gd" id="1_jklfy"]
+[ext_resource type="Texture2D" uid="uid://b78l3dmiiyv6t" path="res://Assets/Images/Dev/stash--circle-dot-duotone.png" id="2_wcc6g"]
+
+[node name="Spawner2D" type="Marker2D" unique_id=46330431]
+script = ExtResource("1_jklfy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=821643738]
+modulate = Color(0.91764706, 0.07450981, 0.21568628, 0.62352943)
+texture = ExtResource("2_wcc6g")

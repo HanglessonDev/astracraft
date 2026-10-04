@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cp248ersa428j"]
+
+[ext_resource type="Script" uid="uid://dmvm466utdrm6" path="res://Source/Spaceship/Spaceship2d.gd" id="1_n4icy"]
+
+[node name="Spaceship2D" type="RigidBody2D" unique_id=1387274257]
+linear_damp = 2.0
+angular_damp = 2.0
+script = ExtResource("1_n4icy")
