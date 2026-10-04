@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://42c7ft0ffoih"]
 
 [ext_resource type="Script" uid="uid://dmvm466utdrm6" path="res://Source/SteerableBody/SteerableBody2D.gd" id="1_dxue8"]
-[ext_resource type="Texture2D" uid="uid://cyv0yn8ir8not" path="res://Assets/Images/Ambient/asteroid_atlas.png" id="2_fkn6d"]
+[ext_resource type="Texture2D" uid="uid://dci8ouwoutw2v" path="res://Assets/Images/Ambient/asteroid_atlas.png" id="2_dxue8"]
 [ext_resource type="Script" uid="uid://di6vfgvqfqb5y" path="res://Source/Systems/Combat/HurtArea2D.gd" id="3_0l205"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wvhbo"]
@@ -16,10 +16,26 @@ radius = 99.0202
 script = ExtResource("1_dxue8")
 metadata/_custom_type_script = "uid://dmvm466utdrm6"
 
+[node name="Visual" type="Node2D" parent="SteerableBody2D" unique_id=1761098051]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual" unique_id=1526956116]
+texture = ExtResource("2_dxue8")
+region_enabled = true
+region_rect = Rect2(0, 146, 237, 227)
+
+[node name="RTCollision" type="RemoteTransform2D" parent="SteerableBody2D/Visual" unique_id=354538125]
+remote_path = NodePath("../../Collision")
+
+[node name="RTHurtArea" type="RemoteTransform2D" parent="SteerableBody2D/Visual" unique_id=281270687]
+remote_path = NodePath("../../HurtArea2D")
+
 [node name="Collision" type="CollisionShape2D" parent="SteerableBody2D" unique_id=1451951113]
+scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_wvhbo")
 
 [node name="HurtArea2D" type="Area2D" parent="SteerableBody2D" unique_id=1476213263]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("3_0l205")
 team = &"asteroids"
 metadata/_custom_type_script = "uid://di6vfgvqfqb5y"
@@ -27,11 +43,3 @@ metadata/_custom_type_script = "uid://di6vfgvqfqb5y"
 [node name="Area" type="CollisionShape2D" parent="SteerableBody2D/HurtArea2D" unique_id=1245718318]
 shape = SubResource("CircleShape2D_ifow5")
 debug_color = Color(0.8627451, 0, 0.8627451, 0.41960785)
-
-[node name="Visual" type="Node2D" parent="SteerableBody2D" unique_id=1761098051]
-
-[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual" unique_id=1001212221]
-position = Vector2(0, -1)
-texture = ExtResource("2_fkn6d")
-region_enabled = true
-region_rect = Rect2(3, 215, 219, 209)
