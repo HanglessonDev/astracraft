@@ -11,6 +11,7 @@ extends RefCounted
 const PLAYER_TEAM: StringName = &"player_team"
 const ENEMY_TEAM: StringName = &"enemy_team"
 const HAZARDS: StringName = &"hazards"
+const ASTEROIDS: StringName = &"asteroids"
 
 ## Group for the node that collects spawned projectiles (ex.: "Bullets").
 ## Spawner2D resolves its container through this group — rename the node
