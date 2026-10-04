@@ -22,6 +22,11 @@ Toda entrada commitada carrega o SHA curto do commit (`git show <sha>`)
   (`b39efa5`)
 
 ### Refatorado
+- **Mecanismo `SpaceShip2D` vira `SteerableBody2D`**: a física (thrust+giro)
+  ganha nome genérico em 1 grafia (classe+arquivo+pasta+cena); o papel
+  nave continua no veículo (`Player` possui spaceship, troca de naves
+  preservada); nós das cenas e `NodePath`s intactos. (`7e7b4bb`,
+  `3292843`)
 - **Fim das magic strings**: grupos (`BULLET_CONTAINER`, times) e input
   actions (`thrust`, `turn_left`, `turn_right`, `fire`) centralizados como
   `StringName` em `GameConfig`; `Spawner2D` sem `find_parent`/`find_child`
