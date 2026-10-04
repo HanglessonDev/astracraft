@@ -16,7 +16,7 @@ var _spawner: Spawner2D
 
 
 func before_test() -> void:
-	# Arrange — mini-hierarquia espelhando Playeground:
+	# Arrange — mini-hierarquia espelhando Playground:
 	# Level(Bullets, Ship(Spawner2D)), com Bullets no grupo oficial
 	_level = auto_free(Node2D.new())
 	_level.name = "FakeLevel"
