@@ -103,6 +103,14 @@ Dispatch rules (API limits — hard constraints, not preferences):
 - **GLM is the default** (far more token-efficient). Use Glimmer for
   A/B comparison on ambiguous tasks, or when GLM is busy.
 
+Division of labor (hard rule, not preference):
+
+- **Heavy/non-trivial code: the orchestrator implements directly.**
+  Juniors are weaker models and err on implementation — don't delegate
+  what needs judgment (architecture, physics, tricky GDScript).
+- **Trivial/punctual work: juniors.** Scouts explore, builders do scoped
+  edits + verification. Small, well-specified, verifiable.
+
 Orchestrator protocol:
 
 1. Plan first: scope, exact files, acceptance criteria, verification commands.
@@ -110,6 +118,18 @@ Orchestrator protocol:
 3. Builder dispatch names every file it may touch + the Verify commands to run.
 4. Orchestrator owns git — builders never commit, branch, or push.
 5. Validate every DONE: re-run the headless suite when behavior changed.
+
+Memory loop (the Memorix experiment — mandatory in every dispatch):
+
+- Every scout/builder dispatch **pastes the relevant gotchas** from memory
+  (orchestrator fetches the brief first; juniors don't search on their own).
+- Every DONE must include **learnings to store** (new gotcha? decision?
+  confirmation?). Orchestrator stores them and records `memorix_feedback`
+  (`used` when memory prevented an error, `verification-failure` when a
+  junior hit a *registered* gotcha anyway).
+- The experiment succeeds when juniors stop repeating registered errors —
+  measured by feedback, not by feeling. Weak models + strong memory is the
+  whole bet.
 
 ## Logging (`Source/Debug/Log/` — static `Log`, no autoload)
 
