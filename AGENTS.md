@@ -77,7 +77,7 @@ most project knowledge is distilled here so you don't burn tokens on discovery.
 | What                             | Where                                                                                               |
 | -------------------------------- | --------------------------------------------------------------------------------------------------- |
 | Central consts (groups, actions) | `Source/Core/GameConfig.gd`                                                                         |
-| Ship physics                     | `Source/Spaceship/Spaceship2d.gd`                                                                   |
+| Ship physics                     | `Source/SteerableBody/SteerableBody2D.gd`                                                           |
 | Firing / bullets                 | `Source/Systems/Weapon/Weapon2D.gd`, `Bullet2D.gd`                                                  |
 | Spawn + container resolution     | `Source/Systems/Spawner/Spawner2D.gd`                                                               |
 | Damage                           | `Source/Systems/Combat/HitArea2D.gd`, `HurtArea2D.gd`, `HitData.gd`                                 |
