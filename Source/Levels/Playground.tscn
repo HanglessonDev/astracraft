@@ -2,14 +2,21 @@
 
 [ext_resource type="PackedScene" uid="uid://xl0itenii02j" path="res://Source/Actors/Player/Player.tscn" id="1_gdr0c"]
 [ext_resource type="PackedScene" uid="uid://42c7ft0ffoih" path="res://Source/Prefabs/Ambient/Asteroids/Asteroid.tscn" id="2_tc5dw"]
+[ext_resource type="Resource" uid="uid://beb88c3yku827" path="res://Source/Prefabs/Ambient/Asteroids/Data/AsteroidTypeA.tres" id="3_12dlj"]
+[ext_resource type="Resource" uid="uid://xjed8nh1k1n6" path="res://Source/Prefabs/Ambient/Asteroids/Data/AsteroidTypeB.tres" id="4_bwwpa"]
 
 [node name="Playground" type="Node2D" unique_id=1763172920]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1635960111]
 
 [node name="Bullets" type="Node2D" parent="." unique_id=1271561990 groups=["bullet_container"]]
 
 [node name="Player" parent="." unique_id=788517319 instance=ExtResource("1_gdr0c")]
 
 [node name="Asteroid" parent="." unique_id=2101305267 instance=ExtResource("2_tc5dw")]
-position = Vector2(544, 11)
+position = Vector2(386, 0)
+stats = ExtResource("3_12dlj")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1635960111]
+[node name="Asteroid2" parent="." unique_id=461688071 instance=ExtResource("2_tc5dw")]
+position = Vector2(155, -241)
+stats = ExtResource("4_bwwpa")

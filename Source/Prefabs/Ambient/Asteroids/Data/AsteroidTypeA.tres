@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="AsteroidStats" format=3 uid="uid://beb88c3yku827"]
+
+[ext_resource type="Script" uid="uid://bexy8vi0wa7qu" path="res://Source/Prefabs/Ambient/Asteroids/HurtShape.gd" id="1_hurtshape"]
+[ext_resource type="Script" uid="uid://d2rfi5quff8yh" path="res://Source/Prefabs/Ambient/Asteroids/AsteroidStats.gd" id="1_qlrq6"]
+[ext_resource type="Texture2D" uid="uid://dci8ouwoutw2v" path="res://Assets/Images/Ambient/asteroid_atlas.png" id="1_urhap"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wvhbo"]
+radius = 110.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ifow5"]
+radius = 100.0
+
+[sub_resource type="Resource" id="HurtShape_h1"]
+script = ExtResource("1_hurtshape")
+shape = SubResource("CircleShape2D_ifow5")
+
+[resource]
+script = ExtResource("1_qlrq6")
+display_name = &"AsteroidTypeA"
+atlas = ExtResource("1_urhap")
+region = Rect2(0, 146, 237, 227)
+size = 0.5
+body_shape = SubResource("CircleShape2D_wvhbo")
+hurt_shapes = Array[ExtResource("1_hurtshape")]([SubResource("HurtShape_h1")])
+metadata/_custom_type_script = "uid://d2rfi5quff8yh"
