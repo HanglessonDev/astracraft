@@ -131,6 +131,18 @@ Memory loop (the Memorix experiment — mandatory in every dispatch):
   measured by feedback, not by feeling. Weak models + strong memory is the
   whole bet.
 
+Memory record template (every store follows it; type comes from the
+official table: decision, problem-solution, gotcha, how-it-works,
+what-changed, trade-off):
+
+- `[ERRO]` exact message/symptom (copy-pasteable, searchable)
+- `[CAUSA]` mechanism, not symptom
+- `[SOLUCAO]` rule or action
+- `[EXEMPLO]` minimal snippet, wrong-vs-right when it fits
+- Entity = subsystem slug (`physics/transform`, `assets-pipeline`),
+  never `general`. Project-agnostic wording by default; repo paths
+  only when the memory is intrinsically about this project.
+
 ## Logging (`Source/Debug/Log/` — static `Log`, no autoload)
 
 - `Log.debug/info/warn/error(cat: StringName, msg: String, data := {})`.
