@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ds2d20qtmm65d" path="res://Assets/Images/Dev/player_ship_placeholder_512.png" id="2_hk4yk"]
 [ext_resource type="Script" uid="uid://di6vfgvqfqb5y" path="res://Source/Systems/Combat/HurtArea2D.gd" id="4_00tdp"]
 [ext_resource type="PackedScene" uid="uid://de7uf2184m7wl" path="res://Source/Systems/Weapon/Weapon2D.tscn" id="4_om7ne"]
-[ext_resource type="PackedScene" uid="uid://c24p06s5pyl1x" path="res://Source/Prefabs/Bullets/DevBullet2D.tscn" id="5_egwhy"]
+[ext_resource type="PackedScene" uid="uid://r56e2ov1blxf" path="res://Source/Prefabs/Bullets/BulletDev.tscn" id="5_egwhy"]
 [ext_resource type="Script" uid="uid://d3smiw7ey3ilo" path="res://Source/Systems/Weapon/WeaponStats.gd" id="6_cebaj"]
 [ext_resource type="Script" uid="uid://c35rpxbwegl7e" path="res://Source/Actors/Player/KeyboardWeaponController.gd" id="8_egwhy"]
 
