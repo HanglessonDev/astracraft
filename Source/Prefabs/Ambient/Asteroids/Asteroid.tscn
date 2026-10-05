@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dmvm466utdrm6" path="res://Source/SteerableBody/SteerableBody2D.gd" id="1_dxue8"]
 [ext_resource type="Script" uid="uid://bvqypmkpjm4fi" path="res://Source/Prefabs/Ambient/Asteroids/Asteroid.gd" id="1_rvkjb"]
 [ext_resource type="Script" uid="uid://di6vfgvqfqb5y" path="res://Source/Systems/Combat/HurtArea2D.gd" id="3_0l205"]
+[ext_resource type="Texture2D" uid="uid://dci8ouwoutw2v" path="res://Assets/Images/Ambient/asteroid_atlas.png" id="3_rvkjb"]
 
 [node name="Asteroid" type="Node2D" unique_id=2101305267]
 script = ExtResource("1_rvkjb")
@@ -14,9 +15,13 @@ metadata/_custom_type_script = "uid://dmvm466utdrm6"
 
 [node name="Visual" type="Node2D" parent="SteerableBody2D" unique_id=1761098051]
 unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual" unique_id=1526956116]
 unique_name_in_owner = true
+texture = ExtResource("3_rvkjb")
+region_enabled = true
+region_rect = Rect2(189, 375, 154, 178)
 
 [node name="RTCollision" type="RemoteTransform2D" parent="SteerableBody2D/Visual" unique_id=354538125]
 remote_path = NodePath("../../Collision")
@@ -26,9 +31,11 @@ remote_path = NodePath("../../HurtArea2D")
 
 [node name="Collision" type="CollisionShape2D" parent="SteerableBody2D" unique_id=1451951113]
 unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
 
 [node name="HurtArea2D" type="Area2D" parent="SteerableBody2D" unique_id=1476213263]
 unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
 script = ExtResource("3_0l205")
 team = &"asteroids"
 metadata/_custom_type_script = "uid://di6vfgvqfqb5y"

@@ -32,7 +32,7 @@ extends Resource
 @export var body_shape: Shape2D
 
 ## Zero or more detection shapes; no ceiling by design.
-@export var hurt_shapes: Array[Shape2D] = []
+@export var hurt_shapes: Array[HurtShape] = []
 
 
 ## Spawns a CollisionShape2D carrying [member body_shape].
@@ -51,10 +51,10 @@ const HURT_DEBUG_COLOR := Color(0.863, 0.0, 0.863, 0.42)
 ## @return shape nodes (caller adds them, e.g. under a HurtArea2D)
 func spawn_hurt_shapes() -> Array[CollisionShape2D]:
 	var nodes: Array[CollisionShape2D] = []
-	for s in hurt_shapes:
-		var shape := s as Shape2D
+	for entry in hurt_shapes:
 		var node := CollisionShape2D.new()
-		node.shape = shape
+		node.shape = entry.shape
+		node.position = entry.offset
 		node.debug_color = HURT_DEBUG_COLOR
 		nodes.append(node)
 	return nodes

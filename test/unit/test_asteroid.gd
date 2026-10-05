@@ -37,18 +37,22 @@ func test_spawns_shapes_from_stats() -> void:
 	assert_object(collision.shape).is_same(stats.body_shape)
 	var hurt := root.get_node("%HurtArea2D") as HurtArea2D
 	assert_int(hurt.get_child_count()).is_equal(stats.hurt_shapes.size())
-	assert_object((hurt.get_child(0) as CollisionShape2D).shape).is_same(stats.hurt_shapes[0])
+	assert_object((hurt.get_child(0) as CollisionShape2D).shape).is_same(stats.hurt_shapes[0].get("shape"))
 
 
 func test_size_applies_to_visual_only() -> void:
 	# Arrange + Act (AsteroidTypeA.size = 0.5)
 	var root := _make_asteroid()
+	var packed := load(SCENE) as PackedScene
+	var plain := auto_free(packed.instantiate()) as Node2D
+	add_child(plain)
 
-	# Assert — size vai so no Visual; o applier nao toca no Collision
+	# Assert — size vai so no Visual; Collision fica como authorado
 	var visual := root.get_node("%Visual") as Node2D
 	assert_bool(visual.scale == Vector2(0.5, 0.5)).is_true()
 	var collision := root.get_node("%Collision") as CollisionShape2D
-	assert_bool(collision.scale == Vector2.ONE).is_true()
+	var plain_collision := plain.get_node("%Collision") as CollisionShape2D
+	assert_bool(collision.scale == plain_collision.scale).is_true()
 
 
 func test_destructible_gates_detection() -> void:
@@ -70,14 +74,17 @@ func test_destructible_gates_detection() -> void:
 	assert_bool(ambient_hurt.monitorable).is_false()
 
 
-func test_missing_stats_leaves_visual_empty() -> void:
-	# Arrange — sem stats: warn + sem crash; cena eh estrutura pura, sem defaults
+const ATLAS := "res://Assets/Images/Ambient/asteroid_atlas.png"
+
+
+func test_missing_stats_keeps_authored_fallback() -> void:
+	# Arrange — sem stats: warn + sem crash; cena traz visual authorado padrao
 	var packed := load(SCENE) as PackedScene
 	var root := auto_free(packed.instantiate()) as Node2D
 
 	# Act
 	add_child(root)
 
-	# Assert — nada aplicado, nada inventado
+	# Assert — fallback authorado intacto
 	var sprite := root.get_node("%Sprite2D") as Sprite2D
-	assert_object(sprite.texture).is_null()
+	assert_str(sprite.texture.resource_path).is_equal(ATLAS)

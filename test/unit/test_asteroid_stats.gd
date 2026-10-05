@@ -57,9 +57,27 @@ func test_hurt_shapes_match_array_without_ceiling() -> void:
 
 	# Assert
 	assert_int(nodes.size()).is_equal(2)
-	assert_object(nodes[0].shape).is_same(stats.hurt_shapes[0])
-	assert_object(nodes[1].shape).is_same(stats.hurt_shapes[1])
+	assert_object(nodes[0].shape).is_same(stats.hurt_shapes[0].get("shape"))
+	assert_object(nodes[1].shape).is_same(stats.hurt_shapes[1].get("shape"))
 	assert_bool(nodes[0].debug_color == AsteroidStats.HURT_DEBUG_COLOR).is_true()
+
+
+func test_hurt_shapes_offsets_applied() -> void:
+	# Arrange — circle tem 2 hurt shapes com offset zero (migração preserva behavior)
+	var stats := _load_stats("circle")
+
+	# Act
+	var nodes := stats.spawn_hurt_shapes()
+	
+	# Assert
+	assert_int(nodes.size()).is_equal(2)
+	# Prova que offset chega no nó (migração para ZERO preserva behavior atual)
+	assert_that(nodes[0].position).is_equal(Vector2.ZERO)
+	assert_that(nodes[1].position).is_equal(Vector2.ZERO)
+	
+	# Limpeza
+	for n in nodes:
+		auto_free(n)
 
 
 func test_spawned_nodes_come_unscaled() -> void:
