@@ -17,6 +17,7 @@ shape = SubResource("CircleShape2D_ifow5")
 [resource]
 script = ExtResource("1_qlrq6")
 display_name = &"AsteroidTypeA"
+max_hp = 5
 atlas = ExtResource("1_urhap")
 region = Rect2(0, 146, 237, 227)
 size = 0.5

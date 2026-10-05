@@ -14,7 +14,7 @@ extends Resource
 @export var destructible := true
 
 ## Hits taken before death (contact and bullets share the pool).
-@export var max_hp := 3
+@export_range(0, 9999, 1) var max_hp := 3
 
 ## Damage dealt on body contact (wiring a HitArea is future work).
 @export var contact_damage := 1
