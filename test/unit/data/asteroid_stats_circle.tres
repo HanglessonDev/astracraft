@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="AsteroidStats" format=3 uid="uid://80d377pseert"]
+
+[ext_resource type="Script" uid="uid://d2rfi5quff8yh" path="res://Source/Prefabs/Ambient/Asteroids/AsteroidStats.gd" id="1_pyd0n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h1"]
+radius = 45.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h2"]
+radius = 30.0
+
+[resource]
+script = ExtResource("1_pyd0n")
+display_name = &"Rock Round"
+body_shape = SubResource("CircleShape2D_body")
+hurt_shapes = Array[Shape2D]([SubResource("CircleShape2D_h1"), SubResource("CircleShape2D_h2")])

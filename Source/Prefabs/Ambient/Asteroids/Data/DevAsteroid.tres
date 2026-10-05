@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AsteroidStats" format=3 uid="uid://beb88c3yku827"]
+
+[ext_resource type="Script" uid="uid://d2rfi5quff8yh" path="res://Source/Prefabs/Ambient/Asteroids/AsteroidStats.gd" id="1_qlrq6"]
+
+[resource]
+script = ExtResource("1_qlrq6")
+metadata/_custom_type_script = "uid://d2rfi5quff8yh"

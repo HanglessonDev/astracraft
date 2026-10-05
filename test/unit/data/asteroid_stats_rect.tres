@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AsteroidStats" format=3 uid="uid://dik5tuqp3yo8v"]
+
+[ext_resource type="Script" uid="uid://d2rfi5quff8yh" path="res://Source/Prefabs/Ambient/Asteroids/AsteroidStats.gd" id="1_irnny"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(120, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1"]
+size = Vector2(110, 70)
+
+[resource]
+script = ExtResource("1_irnny")
+display_name = &"Rock Slab"
+body_shape = SubResource("RectangleShape2D_body")
+hurt_shapes = Array[Shape2D]([SubResource("RectangleShape2D_h1")])
