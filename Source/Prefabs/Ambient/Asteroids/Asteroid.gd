@@ -13,6 +13,15 @@ extends Node2D
 ## asteroid keeps authored scene values and logs a warning.
 @export var stats: AsteroidStats
 
+## Emitted on lethal damage, carrying the score award.
+signal died(score: int)
+## Emitted on lethal damage for FX consumers (level camera, particles).
+## Carries shake trauma, world position and FX scale from stats.
+signal exploded(trauma: float, blast_position: Vector2, blast_scale: float)
+
+## Current hit points. Initialized from stats; readable for tests and HUD.
+var hp: int = 0
+
 @onready var _visual: Node2D = %Visual
 @onready var _sprite: Sprite2D = %Sprite2D
 @onready var _collision: CollisionShape2D = %Collision
@@ -27,6 +36,8 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		_apply_visual.call_deferred()
 		return
+	hp = stats.max_hp
+	_hurt_area.damaged.connect(_on_damaged)
 	_apply_visual()
 	_apply_collision()
 	_apply_hurt()
@@ -62,3 +73,21 @@ func _apply_hurt() -> void:
 ## Ambient rocks stay solid but undetectable; destroyables take hits.
 func _apply_destructible() -> void:
 	_hurt_area.monitorable = stats.destructible
+
+
+## Handles damage reported by the hurt area (already reduced by defense).
+## @param damage Final damage taken this hit
+func _on_damaged(damage: int) -> void:
+	if not stats.destructible:
+		return
+	hp -= damage
+	if hp <= 0:
+		_die()
+
+
+## Emits death signals and frees the asteroid (FX spawns on exploded).
+func _die() -> void:
+	Log.info(&"asteroid", "Asteroid destroyed", {"score": stats.score})
+	died.emit(stats.score)
+	exploded.emit(stats.trauma, global_position, stats.explosion_scale)
+	queue_free()

@@ -13,6 +13,24 @@ extends Resource
 ## Ambient rocks use the same scene and stats with this off.
 @export var destructible := true
 
+## Hits taken before death (contact and bullets share the pool).
+@export var max_hp := 3
+
+## Damage dealt on body contact (wiring a HitArea is future work).
+@export var contact_damage := 1
+
+## Score awarded on death.
+@export var score := 10
+
+## Screen-shake trauma emitted on death (the level camera consumes it).
+@export var trauma := 0.4
+
+## Explosion FX scale (particles + shockwave ring, spawned by consumers).
+@export var explosion_scale := 1.0
+
+## Weight for future random spawn tables (ignored for now).
+@export var spawn_weight := 1.0
+
 ## Shared atlas texture (all asteroids read regions from the same packing).
 @export var atlas: Texture2D
 

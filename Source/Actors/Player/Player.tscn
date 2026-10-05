@@ -34,6 +34,7 @@ polygon = PackedVector2Array(233, -18, 104, -73, -28, -98, -106, -150, -205, -85
 
 [node name="HurtArea2D" type="Area2D" parent="Spaceship2D" unique_id=1525878717]
 scale = Vector2(0.25, 0.25)
+monitoring = false
 script = ExtResource("4_00tdp")
 team = &"player_team"
 metadata/_custom_type_script = "uid://di6vfgvqfqb5y"
