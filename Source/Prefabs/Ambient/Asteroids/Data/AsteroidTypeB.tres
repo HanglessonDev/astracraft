@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AsteroidStats" format=3 uid="uid://xjed8nh1k1n6"]
+
+[ext_resource type="Texture2D" uid="uid://dci8ouwoutw2v" path="res://Assets/Images/Ambient/asteroid_atlas.png" id="1_0jsh7"]
+[ext_resource type="Script" uid="uid://d2rfi5quff8yh" path="res://Source/Prefabs/Ambient/Asteroids/AsteroidStats.gd" id="2_3jc0v"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_wvhbo"]
+points = PackedVector2Array(-66, 33, -71, -13, -57, -84, -27, -77, 5, -63, 55, -27, 71, 8, 67, 52, 28, 85, -30, 76)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gm3m0"]
+radius = 76.1643
+
+[resource]
+script = ExtResource("2_3jc0v")
+display_name = &"AsteroidTypeB"
+atlas = ExtResource("1_0jsh7")
+region = Rect2(189, 375, 154, 178)
+size = 0.5
+body_shape = SubResource("ConvexPolygonShape2D_wvhbo")
+hurt_shapes = Array[Shape2D]([SubResource("CircleShape2D_gm3m0")])
+metadata/_custom_type_script = "uid://d2rfi5quff8yh"

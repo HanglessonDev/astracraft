@@ -4,7 +4,7 @@ extends GdUnitTestSuite
 
 const __source := "res://Source/Prefabs/Ambient/Asteroids/Asteroid.gd"
 const SCENE := "res://Source/Prefabs/Ambient/Asteroids/Asteroid.tscn"
-const STATS := "res://Source/Prefabs/Ambient/Asteroids/Data/DevAsteroid.tres"
+const STATS := "res://Source/Prefabs/Ambient/Asteroids/Data/AsteroidTypeA.tres"
 
 
 func _make_asteroid() -> Node2D:
@@ -41,7 +41,7 @@ func test_spawns_shapes_from_stats() -> void:
 
 
 func test_size_applies_to_visual_only() -> void:
-	# Arrange + Act (DevAsteroid.size = 0.5)
+	# Arrange + Act (AsteroidTypeA.size = 0.5)
 	var root := _make_asteroid()
 
 	# Assert — size vai so no Visual; o applier nao toca no Collision
@@ -52,7 +52,7 @@ func test_size_applies_to_visual_only() -> void:
 
 
 func test_destructible_gates_detection() -> void:
-	# Arrange — DevAsteroid é destrutível por padrão
+	# Arrange — AsteroidTypeA é destrutível por padrão
 	var root := _make_asteroid()
 	var hurt := root.get_node("%HurtArea2D") as HurtArea2D
 	assert_bool(hurt.monitorable).is_true()
