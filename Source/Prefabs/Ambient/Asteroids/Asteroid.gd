@@ -13,22 +13,17 @@ extends Node2D
 ## asteroid keeps authored scene values and logs a warning.
 @export var stats: AsteroidStats
 
-## Emitted on lethal damage, carrying the score award.
-signal died(score: int)
-## Emitted on lethal damage for FX consumers (level camera, particles).
-## Carries shake trauma, world position and FX scale from stats.
-signal exploded(trauma: float, blast_position: Vector2, blast_scale: float)
-
-## Current hit points. Initialized from stats; readable for tests and HUD.
-var hp: int = 0
-
 @onready var _visual: Node2D = %Visual
 @onready var _sprite: Sprite2D = %Sprite2D
 @onready var _collision: CollisionShape2D = %Collision
 @onready var _hurt_area: HurtArea2D = %HurtArea2D
+@onready var _health: GameResource = %HealthResource
+@onready var _score: ScorePoint = %ScorePoint
 
 
 ## Applies stats once the node enters the tree (children and unique names ready).
+## HP and death live in the wired nodes (HealthResource, ScorePoint);
+## this only injects tuned values from stats.
 func _ready() -> void:
 	if stats == null:
 		Log.warn(&"asteroid", "Asteroid without stats; keeping authored scene values", {"node": String(name)})
@@ -36,12 +31,13 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		_apply_visual.call_deferred()
 		return
-	hp = stats.max_hp
-	_hurt_area.damaged.connect(_on_damaged)
+	_health.max_amount = stats.max_hp
+	_health.replenish()
+	_health.invulnerable = not stats.destructible
+	_score.points = stats.score
 	_apply_visual()
 	_apply_collision()
 	_apply_hurt()
-	_apply_destructible()
 
 
 ## Copies atlas, region, tint and uniform size onto the sprite subtree.
@@ -68,26 +64,3 @@ func _apply_hurt() -> void:
 		child.queue_free()
 	for shape_node in stats.spawn_hurt_shapes():
 		_hurt_area.add_child(shape_node)
-
-
-## Ambient rocks stay solid but undetectable; destroyables take hits.
-func _apply_destructible() -> void:
-	_hurt_area.monitorable = stats.destructible
-
-
-## Handles damage reported by the hurt area (already reduced by defense).
-## @param damage Final damage taken this hit
-func _on_damaged(damage: int) -> void:
-	if not stats.destructible:
-		return
-	hp -= damage
-	if hp <= 0:
-		_die()
-
-
-## Emits death signals and frees the asteroid (FX spawns on exploded).
-func _die() -> void:
-	Log.info(&"asteroid", "Asteroid destroyed", {"score": stats.score})
-	died.emit(stats.score)
-	exploded.emit(stats.trauma, global_position, stats.explosion_scale)
-	queue_free()

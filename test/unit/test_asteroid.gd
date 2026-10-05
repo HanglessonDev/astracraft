@@ -65,13 +65,16 @@ func test_destructible_gates_detection() -> void:
 	var ambient_stats := (load(STATS) as AsteroidStats).duplicate() as AsteroidStats
 	ambient_stats.destructible = false
 	var packed := load(SCENE) as PackedScene
-	var ambient := auto_free(packed.instantiate()) as Node2D
+	var ambient := auto_free(packed.instantiate()) as Asteroid
 	ambient.set("stats", ambient_stats)
 	add_child(ambient)
 
-	# Assert — corpo sólido, detecção desligada
+	# Assert — ambiente também é detectável (tiro morre no contato);
+	# o gate vive no resource, não na área
 	var ambient_hurt := ambient.get_node("%HurtArea2D") as HurtArea2D
-	assert_bool(ambient_hurt.monitorable).is_false()
+	assert_bool(ambient_hurt.monitorable).is_true()
+	var ambient_health := ambient.get_node("%HealthResource") as GameResource
+	assert_bool(ambient_health.invulnerable).is_true()
 
 
 func test_missing_stats_leaves_visual_empty() -> void:
@@ -87,11 +90,12 @@ func test_missing_stats_leaves_visual_empty() -> void:
 	assert_object(sprite.texture).is_null()
 
 
-func test_takes_damage_reduces_hp() -> void:
+func test_takes_damage_reduces_resource() -> void:
 	# Arrange
 	var root := _make_asteroid()
 	var hurt := root.get_node("%HurtArea2D") as HurtArea2D
-	var before: int = root.hp
+	var health := root.get_node("%HealthResource") as GameResource
+	var before: int = health.current_amount
 
 	# Act — dano via hurt area (mesmo caminho do combate real)
 	var hit := HitData.new()
@@ -99,49 +103,53 @@ func test_takes_damage_reduces_hp() -> void:
 	hurt.hurt(hit)
 
 	# Assert
-	assert_int(root.hp).is_equal(before - 1)
+	assert_int(health.current_amount).is_equal(before - 1)
 
 
-func test_lethal_damage_emits_died_with_score() -> void:
-	# Arrange — flag array em vez de monitor: o no morre (queue_free) e o
-	# monitor perde o almo apos a liberacao; array captura sincronamente
+func test_lethal_damage_frees_and_scores() -> void:
+	# Arrange — flag arrays (sincronos, imunes a free e timing de frames)
 	var root := _make_asteroid()
 	var hurt := root.get_node("%HurtArea2D") as HurtArea2D
 	var stats := load(STATS) as AsteroidStats
+	var score_point := root.get_node("%ScorePoint") as ScorePoint
 	var received: Array = []
-	root.died.connect(func(score: int) -> void: received.append(score))
+	score_point.scored.connect(func(points: int, trauma: float) -> void: received.append([points, trauma]))
 
 	# Act — dano letal de uma vez
 	var hit := HitData.new()
 	hit.damage = stats.max_hp
 	hurt.hurt(hit)
+	await get_tree().process_frame
 
-	# Assert — morreu com o score do stats
+	# Assert — pontos com trauma junto + instância liberada
 	assert_int(received.size()).is_equal(1)
-	assert_int(int(received[0])).is_equal(stats.score)
+	assert_int(int(received[0][0])).is_equal(stats.score)
+	assert_bool(is_instance_valid(root)).is_false()
 
 
-func test_exploded_carries_trauma_and_position() -> void:
-	# Arrange — captura tudo antes: apos a morte o no pode ser liberado
-	var root := _make_asteroid()
-	var hurt := root.get_node("%HurtArea2D") as HurtArea2D
-	var stats := load(STATS) as AsteroidStats
+func test_trauma_for_curve() -> void:
+	# Arrange — função pura: sem nós, sem autoload, sem frames
+	# Act + Assert — zero dá zero, 10 dá soluço, 100 satura em 1.0
+	assert_float(ScorePoint.trauma_for(0)).is_equal_approx(0.0, 0.0001)
+	assert_float(ScorePoint.trauma_for(10)).is_equal_approx(0.3162, 0.001)
+	assert_float(ScorePoint.trauma_for(100)).is_equal_approx(1.0, 0.0001)
+
+
+func test_trauma_override_wins() -> void:
+	# Arrange
+	var point := ScorePoint.new()
+	point.trauma_override = 0.9
+
+	# Act + Assert — override >= 0 ignora a curva
+	assert_float(ScorePoint.trauma_for(10)).is_equal_approx(0.3162, 0.001)
 	var received: Array = []
-	root.exploded.connect(
-		func(trauma: float, pos: Vector2, scl: float) -> void:
-			received.append([trauma, pos, scl])
-	)
+	point.scored.connect(func(points: int, trauma: float) -> void: received.append([points, trauma]))
+	point.score(10)
 
-	# Act
-	var hit := HitData.new()
-	hit.damage = stats.max_hp
-	hurt.hurt(hit)
-
-	# Assert — contrato com a câmera/FX: trauma, posição e escala do stats
+	# Assert — emitido com o override, não com a curva
 	assert_int(received.size()).is_equal(1)
-	assert_float(received[0][0]).is_equal_approx(stats.trauma, 0.0001)
-	assert_bool(received[0][1] == root.global_position).is_true()
-	assert_float(received[0][2]).is_equal_approx(stats.explosion_scale, 0.0001)
+	assert_float(received[0][1]).is_equal_approx(0.9, 0.0001)
+	auto_free(point)
 
 
 func test_ambient_ignores_damage() -> void:
@@ -153,12 +161,15 @@ func test_ambient_ignores_damage() -> void:
 	ambient.set("stats", ambient_stats)
 	add_child(ambient)
 	var hurt := ambient.get_node("%HurtArea2D") as HurtArea2D
-	var before: int = ambient.hp
+	var health := ambient.get_node("%HealthResource") as GameResource
+	var before: int = health.current_amount
 
 	# Act
 	var hit := HitData.new()
 	hit.damage = 99
 	hurt.hurt(hit)
+	await get_tree().process_frame
 
-	# Assert — HP intacto
-	assert_int(ambient.hp).is_equal(before)
+	# Assert — resource intacto e instância viva
+	assert_int(health.current_amount).is_equal(before)
+	assert_bool(is_instance_valid(ambient)).is_true()

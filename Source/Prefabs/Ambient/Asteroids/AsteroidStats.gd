@@ -19,11 +19,8 @@ extends Resource
 ## Damage dealt on body contact (wiring a HitArea is future work).
 @export var contact_damage := 1
 
-## Score awarded on death.
+## Score awarded on death. Shake trauma derives from this (see ScorePoint).
 @export var score := 10
-
-## Screen-shake trauma emitted on death (the level camera consumes it).
-@export var trauma := 0.4
 
 ## Explosion FX scale (particles + shockwave ring, spawned by consumers).
 @export var explosion_scale := 1.0

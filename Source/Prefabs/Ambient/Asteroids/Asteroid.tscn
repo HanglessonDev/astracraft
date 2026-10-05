@@ -34,8 +34,10 @@ unique_name_in_owner = true
 team = &"asteroids"
 
 [node name="ScorePoint" parent="." unique_id=1523271819 instance=ExtResource("4_gm3m0")]
+unique_name_in_owner = true
 
 [node name="HealthResource" parent="." unique_id=1280494106 instance=ExtResource("5_vytnh")]
+unique_name_in_owner = true
 
 [connection signal="damaged" from="HurtArea2D" to="HealthResource" method="decrease"]
 [connection signal="depleted" from="HealthResource" to="." method="queue_free"]
