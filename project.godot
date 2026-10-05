@@ -23,7 +23,6 @@ ScoreSingleton="*uid://cwp02cbgr4yv3"
 
 window/size/viewport_width=1366
 window/size/viewport_height=768
-window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
