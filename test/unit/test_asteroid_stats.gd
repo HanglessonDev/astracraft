@@ -59,16 +59,21 @@ func test_hurt_shapes_match_array_without_ceiling() -> void:
 	assert_int(nodes.size()).is_equal(2)
 	assert_object(nodes[0].shape).is_same(stats.hurt_shapes[0])
 	assert_object(nodes[1].shape).is_same(stats.hurt_shapes[1])
+	assert_bool(nodes[0].debug_color == AsteroidStats.HURT_DEBUG_COLOR).is_true()
 
 
-func test_size_applies_to_spawned_nodes() -> void:
-	# Arrange — duplicate() para nao sujar o resource compartilhado entre testes
+func test_spawned_nodes_come_unscaled() -> void:
+	# Arrange — size vale so para o Visual (regra); factories spawnam sem escala.
+	# duplicate() para nao sujar o resource compartilhado entre testes.
 	var stats := _load_stats("convex").duplicate() as AsteroidStats
 	stats.size = 2.0
 
 	# Act
 	var node := auto_free(stats.spawn_body_shape()) as CollisionShape2D
+	var hurt := stats.spawn_hurt_shapes()
+	for n in hurt:
+		auto_free(n)
 
 	# Assert
-	assert_float(node.scale.x).is_equal_approx(2.0, APPROX)
-	assert_float(node.scale.y).is_equal_approx(2.0, APPROX)
+	assert_bool(node.scale == Vector2.ONE).is_true()
+	assert_bool(hurt.is_empty()).is_true()

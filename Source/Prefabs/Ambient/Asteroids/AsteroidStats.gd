@@ -9,6 +9,10 @@ extends Resource
 ## Display name (editor pickers and logs).
 @export var display_name: StringName = &"Asteroid"
 
+## When false, this is scenery: solid body, but the hurt area ignores hits.
+## Ambient rocks use the same scene and stats with this off.
+@export var destructible := true
+
 ## Shared atlas texture (all asteroids read regions from the same packing).
 @export var atlas: Texture2D
 
@@ -19,7 +23,8 @@ extends Resource
 ## Optional tint (WHITE = faithful; same art yields variants for free).
 @export var modulate: Color = Color.WHITE
 
-## Uniform size multiplier applied to spawned shape nodes.
+## Uniform size multiplier for the Visual node ONLY. No other code may
+## touch scale: shapes follow authored values (RTs propagate the Visual).
 ## Single scalar on purpose: physics only supports uniform scale.
 @export var size := 1.0
 
@@ -35,8 +40,11 @@ extends Resource
 func spawn_body_shape() -> CollisionShape2D:
 	var node := CollisionShape2D.new()
 	node.shape = body_shape
-	node.scale = Vector2(size, size)
 	return node
+
+
+## Debug color for spawned hurt shapes (magenta-ish, distinct from body collision).
+const HURT_DEBUG_COLOR := Color(0.863, 0.0, 0.863, 0.42)
 
 
 ## Spawns one CollisionShape2D per entry in [member hurt_shapes].
@@ -47,6 +55,6 @@ func spawn_hurt_shapes() -> Array[CollisionShape2D]:
 		var shape := s as Shape2D
 		var node := CollisionShape2D.new()
 		node.shape = shape
-		node.scale = Vector2(size, size)
+		node.debug_color = HURT_DEBUG_COLOR
 		nodes.append(node)
 	return nodes
