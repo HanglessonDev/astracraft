@@ -45,3 +45,6 @@ Toda entrada commitada carrega o SHA curto do commit (`git show <sha>`)
   (`9951f47`).
 - `AGENTS.md` (toolchain, verify, convenções, orquestração) e este
   changelog. (`24deaa0`)
+- Consumidor `Asteroid.gd` aplica `AsteroidStats` (visual, shapes,
+  destructible); cena vira estrutura pura; `test_asteroid.gd` (5 casos).
+  (`2a1ee20`)
