@@ -7,9 +7,9 @@ const SCENE := "res://Source/Prefabs/Ambient/Asteroids/Asteroid.tscn"
 const STATS := "res://Source/Prefabs/Ambient/Asteroids/Data/AsteroidTypeA.tres"
 
 
-func _make_asteroid() -> Node2D:
+func _make_asteroid() -> Asteroid:
 	var packed := load(SCENE) as PackedScene
-	var root := auto_free(packed.instantiate()) as Node2D
+	var root := auto_free(packed.instantiate()) as Asteroid
 	root.set("stats", load(STATS) as AsteroidStats)
 	add_child(root)
 	return root
@@ -74,17 +74,91 @@ func test_destructible_gates_detection() -> void:
 	assert_bool(ambient_hurt.monitorable).is_false()
 
 
-const ATLAS := "res://Assets/Images/Ambient/asteroid_atlas.png"
-
-
-func test_missing_stats_keeps_authored_fallback() -> void:
-	# Arrange — sem stats: warn + sem crash; cena traz visual authorado padrao
+func test_missing_stats_leaves_visual_empty() -> void:
+	# Arrange — sem stats: warn + sem crash; cena eh estrutura pura, sem defaults
 	var packed := load(SCENE) as PackedScene
 	var root := auto_free(packed.instantiate()) as Node2D
 
 	# Act
 	add_child(root)
 
-	# Assert — fallback authorado intacto
+	# Assert — nada aplicado, nada inventado
 	var sprite := root.get_node("%Sprite2D") as Sprite2D
-	assert_str(sprite.texture.resource_path).is_equal(ATLAS)
+	assert_object(sprite.texture).is_null()
+
+
+func test_takes_damage_reduces_hp() -> void:
+	# Arrange
+	var root := _make_asteroid()
+	var hurt := root.get_node("%HurtArea2D") as HurtArea2D
+	var before: int = root.hp
+
+	# Act — dano via hurt area (mesmo caminho do combate real)
+	var hit := HitData.new()
+	hit.damage = 1
+	hurt.hurt(hit)
+
+	# Assert
+	assert_int(root.hp).is_equal(before - 1)
+
+
+func test_lethal_damage_emits_died_with_score() -> void:
+	# Arrange — flag array em vez de monitor: o no morre (queue_free) e o
+	# monitor perde o almo apos a liberacao; array captura sincronamente
+	var root := _make_asteroid()
+	var hurt := root.get_node("%HurtArea2D") as HurtArea2D
+	var stats := load(STATS) as AsteroidStats
+	var received: Array = []
+	root.died.connect(func(score: int) -> void: received.append(score))
+
+	# Act — dano letal de uma vez
+	var hit := HitData.new()
+	hit.damage = stats.max_hp
+	hurt.hurt(hit)
+
+	# Assert — morreu com o score do stats
+	assert_int(received.size()).is_equal(1)
+	assert_int(int(received[0])).is_equal(stats.score)
+
+
+func test_exploded_carries_trauma_and_position() -> void:
+	# Arrange — captura tudo antes: apos a morte o no pode ser liberado
+	var root := _make_asteroid()
+	var hurt := root.get_node("%HurtArea2D") as HurtArea2D
+	var stats := load(STATS) as AsteroidStats
+	var received: Array = []
+	root.exploded.connect(
+		func(trauma: float, pos: Vector2, scl: float) -> void:
+			received.append([trauma, pos, scl])
+	)
+
+	# Act
+	var hit := HitData.new()
+	hit.damage = stats.max_hp
+	hurt.hurt(hit)
+
+	# Assert — contrato com a câmera/FX: trauma, posição e escala do stats
+	assert_int(received.size()).is_equal(1)
+	assert_float(received[0][0]).is_equal_approx(stats.trauma, 0.0001)
+	assert_bool(received[0][1] == root.global_position).is_true()
+	assert_float(received[0][2]).is_equal_approx(stats.explosion_scale, 0.0001)
+
+
+func test_ambient_ignores_damage() -> void:
+	# Arrange — duplicate() para não sujar o resource compartilhado
+	var ambient_stats := (load(STATS) as AsteroidStats).duplicate() as AsteroidStats
+	ambient_stats.destructible = false
+	var packed := load(SCENE) as PackedScene
+	var ambient := auto_free(packed.instantiate()) as Asteroid
+	ambient.set("stats", ambient_stats)
+	add_child(ambient)
+	var hurt := ambient.get_node("%HurtArea2D") as HurtArea2D
+	var before: int = ambient.hp
+
+	# Act
+	var hit := HitData.new()
+	hit.damage = 99
+	hurt.hurt(hit)
+
+	# Assert — HP intacto
+	assert_int(ambient.hp).is_equal(before)

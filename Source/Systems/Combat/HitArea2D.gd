@@ -21,9 +21,12 @@ func hit(hurt_area: HurtArea2D) -> void:
 	hit_landed.emit(damage)
 
 ## Called when an area enters this hit area.
-## @param hurt_area The hurt area that entered this hit area
-func _on_area_entered(hurt_area: HurtArea2D) -> void:
-	hit(hurt_area)
+## Ignores anything that is not a HurtArea2D (e.g. other bullets
+## overlapping mid-flight must never trigger nor error).
+## @param area The area that entered this hit area
+func _on_area_entered(area: Area2D) -> void:
+	if area is HurtArea2D:
+		hit(area)
 
 
 ## Called when a hit is successfully landed (placeholder for override).

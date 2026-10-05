@@ -6,7 +6,7 @@ extends GdUnitTestSuite
 
 const __source := "res://Source/Systems/Weapon/Weapon2D.gd"
 const WEAPON_SCENE := "res://Source/Systems/Weapon/Weapon2D.tscn"
-const BULLET_SCENE := "res://Source/Prefabs/Bullets/DevBullet2D.tscn"
+const BULLET_SCENE := "res://Source/Prefabs/Bullets/BulletDev.tscn"
 const APPROX := 0.01
 
 var _level: Node2D

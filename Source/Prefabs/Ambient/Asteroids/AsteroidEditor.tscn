@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bv1fn6c5864r2"]
+
+[ext_resource type="PackedScene" uid="uid://42c7ft0ffoih" path="res://Source/Prefabs/Ambient/Asteroids/Asteroid.tscn" id="1_di2s7"]
+[ext_resource type="Resource" uid="uid://c1suufgpuhp74" path="res://Source/Prefabs/Ambient/Asteroids/Data/AsteroidTypeC.tres" id="2_s3ioh"]
+[ext_resource type="Texture2D" uid="uid://dci8ouwoutw2v" path="res://Assets/Images/Ambient/asteroid_atlas.png" id="3_s3ioh"]
+
+[node name="Asteroid" unique_id=2101305267 instance=ExtResource("1_di2s7")]
+stats = ExtResource("2_s3ioh")
+
+[node name="Sprite2D" parent="SteerableBody2D/Visual" parent_id_path=PackedInt32Array(1761098051) index="0" unique_id=1526956116]
+texture = ExtResource("3_s3ioh")
+region_enabled = true
+region_rect = Rect2(393, 418, 141, 141)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SteerableBody2D/Collision" parent_id_path=PackedInt32Array(1451951113) index="0" unique_id=580909629]

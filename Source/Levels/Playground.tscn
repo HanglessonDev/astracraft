@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://42c7ft0ffoih" path="res://Source/Prefabs/Ambient/Asteroids/Asteroid.tscn" id="2_tc5dw"]
 [ext_resource type="Resource" uid="uid://beb88c3yku827" path="res://Source/Prefabs/Ambient/Asteroids/Data/AsteroidTypeA.tres" id="3_12dlj"]
 [ext_resource type="Resource" uid="uid://xjed8nh1k1n6" path="res://Source/Prefabs/Ambient/Asteroids/Data/AsteroidTypeB.tres" id="4_bwwpa"]
+[ext_resource type="Resource" uid="uid://c1suufgpuhp74" path="res://Source/Prefabs/Ambient/Asteroids/Data/AsteroidTypeC.tres" id="5_744ss"]
 
 [node name="Playground" type="Node2D" unique_id=1763172920]
 
@@ -20,3 +21,7 @@ stats = ExtResource("3_12dlj")
 [node name="Asteroid2" parent="." unique_id=461688071 instance=ExtResource("2_tc5dw")]
 position = Vector2(155, -241)
 stats = ExtResource("4_bwwpa")
+
+[node name="Asteroid3" parent="." unique_id=1646633273 instance=ExtResource("2_tc5dw")]
+position = Vector2(-235, -202)
+stats = ExtResource("5_744ss")
