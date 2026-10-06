@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://dev71ibdprb04"]
+
+[ext_resource type="Script" uid="uid://dmvm466utdrm6" path="res://Source/SteerableBody/SteerableBody2D.gd" id="1_dxue8"]
+[ext_resource type="Script" uid="uid://b1nves35b6kjn" path="res://Source/Prefabs/Asteroids/Asteroid.gd" id="1_rvkjb"]
+[ext_resource type="PackedScene" uid="uid://dv8bt81ht4kev" path="res://Source/Systems/Combat/HitArea2D.tscn" id="2_amggc"]
+[ext_resource type="SpriteFrames" uid="uid://orw2ar7rlyjj" path="res://Assets/Images/Asteroids/asteroid_atlas.tres" id="2_htjcc"]
+[ext_resource type="PackedScene" uid="uid://c8sxeuu1roa12" path="res://Source/Systems/Combat/HurtArea2D.tscn" id="3_r21cw"]
+[ext_resource type="Script" uid="uid://c1twwbq7dnyue" path="res://Source/UI/DebugNametag.gd" id="4_5otuu"]
+[ext_resource type="Texture2D" uid="uid://d1onowcb0r3qf" path="res://Assets/Images/Asteroids/asteroid_atlas.png" id="5_1j6jp"]
+[ext_resource type="Script" uid="uid://vce52pb1bdyl" path="res://Source/Systems/Combat/HitData.gd" id="5_rtvet"]
+[ext_resource type="PackedScene" uid="uid://cwwqql21sye1y" path="res://Source/Core/ScoreSingleton/ScorePoint.tscn" id="7_cakvm"]
+[ext_resource type="PackedScene" uid="uid://b6k2txha600c7" path="res://Source/Systems/GameResource/GameResource.tscn" id="8_xtav5"]
+
+[sub_resource type="Resource" id="Resource_kf567"]
+script = ExtResource("5_rtvet")
+team = &"asteroids"
+metadata/_custom_type_script = "uid://vce52pb1bdyl"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("5_1j6jp")
+region = Rect2(0, 0, 508, 510)
+
+[sub_resource type="Animation" id="Animation_0hfdf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SteerableBody2D/Visual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SteerableBody2D/Visual:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5otuu"]
+resource_name = "float"
+length = 3.0000000000000004
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SteerableBody2D/Visual:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SteerableBody2D/Visual:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.73333335, 2.2333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.01745329251994329, -0.01745329251994329]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j5p6f"]
+_data = {
+&"RESET": SubResource("Animation_0hfdf"),
+&"float": SubResource("Animation_5otuu")
+}
+
+[node name="Asteroid" type="Node2D" unique_id=2101305267]
+script = ExtResource("1_rvkjb")
+atlas = ExtResource("2_htjcc")
+contact_damage = SubResource("Resource_kf567")
+
+[node name="DebugNametag" type="Label" parent="." unique_id=569728089 node_paths=PackedStringArray("target", "entity")]
+offset_top = -467.0
+offset_right = 40.0
+offset_bottom = -444.0
+text = "?"
+script = ExtResource("4_5otuu")
+target = NodePath("../SteerableBody2D")
+entity = NodePath("..")
+y_offset = -100.0
+metadata/_custom_type_script = "uid://c1twwbq7dnyue"
+
+[node name="SteerableBody2D" type="RigidBody2D" parent="." unique_id=1026352820]
+unique_name_in_owner = true
+script = ExtResource("1_dxue8")
+metadata/_custom_type_script = "uid://dmvm466utdrm6"
+
+[node name="Visual" type="Node2D" parent="SteerableBody2D" unique_id=1761098051]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual" unique_id=1526956116]
+unique_name_in_owner = true
+texture = SubResource("AtlasTexture_1")
+
+[node name="RTCollisionShape" type="RemoteTransform2D" parent="SteerableBody2D/Visual" unique_id=354538125]
+remote_path = NodePath("../../CollisionShape")
+
+[node name="HitArea2D" parent="SteerableBody2D/Visual" unique_id=374486296 instance=ExtResource("2_amggc")]
+unique_name_in_owner = true
+scale = Vector2(1.05, 1.05)
+hit_data = SubResource("Resource_kf567")
+
+[node name="AreaShape" type="CollisionShape2D" parent="SteerableBody2D/Visual/HitArea2D" unique_id=1579115988]
+debug_color = Color(1, 0.23137255, 0.1882353, 0.5019608)
+
+[node name="HurtArea2D" parent="SteerableBody2D/Visual" unique_id=650076086 instance=ExtResource("3_r21cw")]
+unique_name_in_owner = true
+scale = Vector2(0.95, 0.95)
+team = &"asteroids"
+
+[node name="AreaShape" type="CollisionShape2D" parent="SteerableBody2D/Visual/HurtArea2D" unique_id=1007204554]
+debug_color = Color(0.20392157, 0.78039217, 0.34901962, 0.5019608)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="SteerableBody2D" unique_id=1451951113]
+unique_name_in_owner = true
+
+[node name="ScorePoint" parent="." unique_id=1523271819 instance=ExtResource("7_cakvm")]
+unique_name_in_owner = true
+points = 10
+
+[node name="HealthResource" parent="." unique_id=1280494106 instance=ExtResource("8_xtav5")]
+unique_name_in_owner = true
+max_amount = 3
+
+[node name="Animations" type="AnimationPlayer" parent="." unique_id=1769540087]
+libraries/ = SubResource("AnimationLibrary_j5p6f")
+autoplay = &"float"
+
+[connection signal="damaged" from="SteerableBody2D/Visual/HurtArea2D" to="HealthResource" method="decrease"]
+[connection signal="depleted" from="HealthResource" to="." method="queue_free"]
+[connection signal="depleted" from="HealthResource" to="ScorePoint" method="score"]

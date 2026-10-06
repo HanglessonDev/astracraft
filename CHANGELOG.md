@@ -32,6 +32,10 @@ Toda entrada commitada carrega o SHA curto do commit (`git show <sha>`)
   `StringName` em `GameConfig`; `Spawner2D` sem `find_parent`/`find_child`
   por nome; `Bullets` resolvido por grupo; `common_ancestor_name` e
   `container_name` removidos (sem código morto). (`24deaa0`)
+- Sistema de dados asteroid: arquivos `.tres` centralizam estatísticas,
+  removendo hardcode de valores (`de3728f`, `90c2a6d`)
+- Sistema de combate: componentes `HurtShape` tipados, integração com
+  sistema de dano (`94d4220`, `8bcda03`)
 
 ### Adicionado
 - Lib de logging em `Source/Debug/Log/` (`Log` estático, sem autoload).
@@ -48,3 +52,14 @@ Toda entrada commitada carrega o SHA curto do commit (`git show <sha>`)
 - Consumidor `Asteroid.gd` aplica `AsteroidStats` (visual, shapes,
   destructible); cena vira estrutura pura; `test_asteroid.gd` (5 casos).
   (`2a1ee20`)
+- Sistema de dados asteroid: `AsteroidTypeA/B/C.tres` com estatísticas
+  (HP, damage, visual, shapes); kinematic segue só como draft DRAFT-1
+  (`60e946b`, `5ce694b`, `5975b48`)
+- Gameplay de asteroides: sistema HP, estados `died`/`exploded`,
+  componentes de combate integrados (`94d4220`)
+- `HurtShape` tipado com sistema de tipos, cena estruturada pura,
+  testes gdUnit4 integrados (`8bcda03`)
+- Troca de bala `DevBullet2D` por `BulletDev` (componentes,
+  sem duplicação) (`2c0fce8`)
+- Reconciliação de backlog: fechamento de itens 1.1, 1.2, 1.3, 2.1
+  com evidências de implementação (`4245df2`)

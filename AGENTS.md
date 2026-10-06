@@ -110,6 +110,9 @@ Division of labor (hard rule, not preference):
   what needs judgment (architecture, physics, tricky GDScript).
 - **Trivial/punctual work: juniors.** Scouts explore, builders do scoped
   edits + verification. Small, well-specified, verifiable.
+- **YAGNI covers speculative features, never identified defects.**
+  A known edge case in logic that ships gets fixed now, cheap —
+  "no trigger yet" means unknown date, not theoretical.
 
 Orchestrator protocol:
 
@@ -130,6 +133,10 @@ Memory loop (the Memorix experiment — mandatory in every dispatch):
 - The experiment succeeds when juniors stop repeating registered errors —
   measured by feedback, not by feeling. Weak models + strong memory is the
   whole bet.
+- Juniors don't use memory tools directly (they can't reach them): the
+  orchestrator pastes relevant gotchas into every dispatch and stores
+  learnings back from every DONE. If juniors keep missing, refine their
+  agent `.md` files — not the memories.
 
 Memory record template (every store follows it; type comes from the
 official table: decision, problem-solution, gotcha, how-it-works,

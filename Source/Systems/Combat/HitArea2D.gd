@@ -10,6 +10,13 @@ signal hit_landed(damage)
 ## Resource containing hit damage and team information.
 @export var hit_data: HitData
 
+##
+@export var debug_color: Color = Color(1.0, 0.231, 0.188, 0.502)
+
+##
+func _ready() -> void:
+	_paint_shapes()
+
 ## Processes a hit when colliding with a hurt area.
 ## @param hurt_area The hurt area that was hit
 func hit(hurt_area: HurtArea2D) -> void:
@@ -33,3 +40,10 @@ func _on_area_entered(area: Area2D) -> void:
 ## Override this method to handle hit landing effects.
 func _on_hit_landed() -> void:
 	pass # Replace with function body.
+
+##
+func _paint_shapes() -> void:
+	for child in self.get_children():
+		var shape := child as CollisionShape2D
+		if shape:
+			shape.debug_color = debug_color

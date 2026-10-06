@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cwp02cbgr4yv3"]
+
+[ext_resource type="PackedScene" uid="uid://b6k2txha600c7" path="res://Source/Systems/GameResource/GameResource.tscn" id="1_i716s"]
+
+[node name="ScoreSingleton" unique_id=1280494106 instance=ExtResource("1_i716s")]
+max_amount = 2147483647
+current_amount = 0

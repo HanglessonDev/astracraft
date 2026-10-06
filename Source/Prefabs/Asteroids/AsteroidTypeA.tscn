@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b34g1t1qmqj2v"]
+
+[ext_resource type="PackedScene" uid="uid://dev71ibdprb04" path="res://Source/Prefabs/Asteroids/Asteroid.tscn" id="1_m2vlh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m2vlh"]
+radius = 235.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7yx7g"]
+radius = 235.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oe1xy"]
+radius = 235.0
+
+[node name="AsteroidTypeA" unique_id=2101305267 instance=ExtResource("1_m2vlh")]
+
+[node name="Sprite2D" parent="SteerableBody2D/Visual" parent_id_path=PackedInt32Array(1761098051) index="0" unique_id=1526956116]
+position = Vector2(-8, 0)
+
+[node name="AreaShape" parent="SteerableBody2D/Visual/HitArea2D" parent_id_path=PackedInt32Array(374486296) index="0" unique_id=1579115988]
+shape = SubResource("CircleShape2D_m2vlh")
+
+[node name="AreaShape" parent="SteerableBody2D/Visual/HurtArea2D" parent_id_path=PackedInt32Array(650076086) index="0" unique_id=1007204554]
+shape = SubResource("CircleShape2D_7yx7g")
+
+[node name="CollisionShape" parent="SteerableBody2D" parent_id_path=PackedInt32Array(1026352820) index="1" unique_id=1451951113]
+shape = SubResource("CircleShape2D_oe1xy")
