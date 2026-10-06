@@ -22,6 +22,12 @@ Toda entrada commitada carrega o SHA curto do commit (`git show <sha>`)
   (`b39efa5`)
 - Migração HP para `GameResource` + trauma derivado + logs nos sistemas
   (`160b5c3`)
+- **Depleted fantasma no boot**: `ScoreSingleton` (autoload com
+  `current_amount = 0`) atravessava o path de morte na desserialização;
+  `set_current_amount` agora só emite `depleted`/`replenished` dentro
+  da tree — runtime 1:1, sem `Depleted` no boot. (`5a32f6e`)
+- Typo `defese` vira `defense` em `HurtArea2D` (declaração + 2 usos).
+  (`6c0f288`)
 
 ### Refatorado
 - **Mecanismo `SpaceShip2D` vira `SteerableBody2D`**: a física (thrust+giro)
@@ -84,3 +90,8 @@ Toda entrada commitada carrega o SHA curto do commit (`git show <sha>`)
   (`469f9bb`)
 - Reorganização de prefabs e montagem de hurtbox/asteroide no editor
   (`6ad8d26`)
+- Console de debug runtime (F1 físico, zero InputMap): shell em
+  `Source/Debug/Console/` + 8 comandos v1 (`help/hp/damage/heal/pos/
+  score/spawn/tags`), alvos via `GameConfig.PLAYER_SHIP` + `ASTEROIDS`,
+  instância por level no `Playground.tscn`; `test_debug_console.gd`
+  (8 casos). (`eab3c39`)
