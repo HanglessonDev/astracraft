@@ -12,6 +12,12 @@ signal damaged(damage_receiveid: int)
 ## Team affiliation for friendly fire checks.
 @export var team:= GameConfig.ENEMY_TEAM
 
+##
+@export var debug_color: Color = Color(0.204, 0.78, 0.349, 0.502)
+
+##
+func _ready() -> void:
+	_paint_shapes()
 
 ## Calculates and applies damage from a hit.
 ## @param hit_data The hit data containing damage and team information
@@ -25,3 +31,10 @@ func hurt(hit_data:HitData) -> int:
 	Log.info(&"combat", "Damage received", {"damage": damage})
 	damaged.emit(damage)
 	return damage
+
+##
+func _paint_shapes() -> void:
+	for child in self.get_children():
+		var shape := child as CollisionShape2D
+		if shape:
+			shape.debug_color = debug_color

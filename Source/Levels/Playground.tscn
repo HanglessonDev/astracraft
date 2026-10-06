@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://6kmxbhxrtqdq"]
 
 [ext_resource type="PackedScene" uid="uid://xl0itenii02j" path="res://Source/Actors/Player/Player.tscn" id="1_gdr0c"]
-[ext_resource type="PackedScene" uid="uid://42c7ft0ffoih" path="res://Source/Prefabs/Ambient/Asteroids/Asteroid.tscn" id="2_tc5dw"]
-[ext_resource type="Resource" uid="uid://beb88c3yku827" path="res://Source/Prefabs/Ambient/Asteroids/Data/AsteroidTypeA.tres" id="3_12dlj"]
-[ext_resource type="Resource" uid="uid://xjed8nh1k1n6" path="res://Source/Prefabs/Ambient/Asteroids/Data/AsteroidTypeB.tres" id="4_bwwpa"]
-[ext_resource type="Resource" uid="uid://c1suufgpuhp74" path="res://Source/Prefabs/Ambient/Asteroids/Data/AsteroidTypeC.tres" id="5_744ss"]
+[ext_resource type="PackedScene" uid="uid://b34g1t1qmqj2v" path="res://Source/Prefabs/Asteroids/AsteroidTypeA.tscn" id="2_tc5dw"]
+[ext_resource type="PackedScene" uid="uid://bay321i4lgdjh" path="res://Source/Prefabs/Asteroids/AsteroidTypeB.tscn" id="3_12dlj"]
 
 [node name="Playground" type="Node2D" unique_id=1763172920]
 
@@ -14,14 +12,10 @@
 
 [node name="Player" parent="." unique_id=788517319 instance=ExtResource("1_gdr0c")]
 
-[node name="Asteroid" parent="." unique_id=2101305267 instance=ExtResource("2_tc5dw")]
-position = Vector2(386, 0)
-stats = ExtResource("3_12dlj")
+[node name="AsteroidTypeA" parent="." unique_id=2101305267 instance=ExtResource("2_tc5dw")]
+position = Vector2(440, -157)
+size = 0.3
 
-[node name="Asteroid2" parent="." unique_id=461688071 instance=ExtResource("2_tc5dw")]
-position = Vector2(155, -241)
-stats = ExtResource("4_bwwpa")
-
-[node name="Asteroid3" parent="." unique_id=1646633273 instance=ExtResource("2_tc5dw")]
-position = Vector2(-235, -202)
-stats = ExtResource("5_744ss")
+[node name="AsteroidTypeB" parent="." unique_id=1786950984 instance=ExtResource("3_12dlj")]
+position = Vector2(-221, -245)
+size = 0.3
