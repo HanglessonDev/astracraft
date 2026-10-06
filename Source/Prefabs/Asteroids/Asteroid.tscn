@@ -82,7 +82,7 @@ _data = {
 &"float": SubResource("Animation_5otuu")
 }
 
-[node name="Asteroid" type="Node2D" unique_id=2101305267]
+[node name="Asteroid" type="Node2D" unique_id=2101305267 groups=["asteroids"]]
 script = ExtResource("1_rvkjb")
 atlas = ExtResource("2_htjcc")
 contact_damage = SubResource("Resource_kf567")

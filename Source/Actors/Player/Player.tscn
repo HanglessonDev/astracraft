@@ -17,7 +17,7 @@ fire_rate = 5.0
 bullet_packed_scene = ExtResource("5_egwhy")
 metadata/_custom_type_script = "uid://d3smiw7ey3ilo"
 
-[node name="Player" type="Node2D" unique_id=788517319]
+[node name="Player" type="Node2D" unique_id=788517319 groups=["player_ship"]]
 
 [node name="DebugNametag" parent="." unique_id=309418514 node_paths=PackedStringArray("target", "entity") instance=ExtResource("3_tag")]
 offset_right = 200.0

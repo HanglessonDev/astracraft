@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Source/Debug/Console/DebugConsole.gd" id="1_con"]
+
+[node name="DebugConsole" type="CanvasLayer"]
+layer = 70
+script = ExtResource("1_con")
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 12
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -220.0
+grow_horizontal = 2
+grow_vertical = 0
+custom_minimum_size = Vector2(0, 220)
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Box" type="VBoxContainer" parent="Panel/Margin"]
+mouse_filter = 2
+
+[node name="Out" type="RichTextLabel" parent="Panel/Margin/Box"]
+bbcode_enabled = false
+mouse_filter = 2
+scroll_following = true
+size_flags_vertical = 3
+
+[node name="Line" type="LineEdit" parent="Panel/Margin/Box"]
+size_flags_horizontal = 3
+placeholder_text = "comando (help lista)"
+
+[connection signal="text_submitted" from="Panel/Margin/Box/Line" to="." method="_on_submit"]
+[connection signal="mouse_entered" from="Panel" to="." method="_on_panel_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_hover_out"]
+[connection signal="focus_entered" from="Panel/Margin/Box/Line" to="." method="_on_line_focus_entered"]
