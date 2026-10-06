@@ -48,6 +48,9 @@ Toda entrada commitada carrega o SHA curto do commit (`git show <sha>`)
   e integração com logging (`d63f963`)
 - Sistema `GameResource` + `ScoreSingleton` com fiação completa na cena
   (`ac5beed`)
+- **Fim do autoload `DebugNametags`**: bulk (`show/hide/toggle`) vira
+  estáticos em `DebugNametag`; cada tag se esconde em release sozinha;
+  `set_entity_visible` removido (sem chamadores). (`a9689b5`)
 
 ### Adicionado
 - Lib de logging em `Source/Debug/Log/` (`Log` estático, sem autoload).

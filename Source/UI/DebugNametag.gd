@@ -1,7 +1,8 @@
 ## Floating debug nametag: world-space label pinned above an entity.
 ## Lives as a child of the entity ROOT (never of rotating bodies), so it
 ## stays upright by construction — no counter-rotation or RemoteTransform.
-## Managed in bulk by the DebugNametags autoload (group calls).
+## Bulk ops are statics below (show_all/hide_all/toggle); each tag hides
+## itself in release builds, so no global manager is needed.
 class_name DebugNametag
 extends Label
 
@@ -19,12 +20,46 @@ extends Label
 @export var y_offset := -64.0
 
 
+## Bulk visibility state (debug-only; mirrors the tags in the tree).
+static var _showing_all := OS.is_debug_build()
+
+
 func _ready() -> void:
 	add_to_group(GameConfig.DEBUG_NAMETAG)
 	if target == null:
 		target = get_parent() as Node2D
 	if entity == null:
 		entity = get_parent()
+	if not OS.is_debug_build():
+		visible = false
+
+
+## Shows every nametag in the tree.
+## @param tree Scene tree carrying the tag group
+static func show_all(tree: SceneTree) -> void:
+	_showing_all = true
+	tree.call_group(GameConfig.DEBUG_NAMETAG, &"set_tag_visible", true)
+
+
+## Hides every nametag in the tree.
+## @param tree Scene tree carrying the tag group
+static func hide_all(tree: SceneTree) -> void:
+	_showing_all = false
+	tree.call_group(GameConfig.DEBUG_NAMETAG, &"set_tag_visible", false)
+
+
+## Toggles bulk nametag visibility from the tracked state.
+## @param tree Scene tree carrying the tag group
+static func toggle(tree: SceneTree) -> void:
+	if _showing_all:
+		hide_all(tree)
+	else:
+		show_all(tree)
+
+
+## @return true when bulk nametags are currently shown
+static func is_showing() -> bool:
+	return _showing_all
 
 
 ## Refreshes text and position every frame while visible (debug-only cost).
@@ -46,7 +81,7 @@ func _process(_delta: float) -> void:
 	position = anchor + Vector2(-size.x / 2.0, y_offset)
 
 
-## Group-callable visibility switch (used by the DebugNametags autoload).
+## Group-callable visibility switch (see show_all/hide_all).
 ## @param value True to show this tag
 func set_tag_visible(value: bool) -> void:
 	visible = value

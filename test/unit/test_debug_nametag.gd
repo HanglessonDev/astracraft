@@ -1,4 +1,4 @@
-## Suite das debug nametags: toggle global via autoload + conteúdo nome + HP.
+## Suite das debug nametags: toggle global via estaticos + conteúdo nome + HP.
 extends GdUnitTestSuite
 
 const __source := "res://Source/UI/DebugNametag.gd"
@@ -18,17 +18,17 @@ func test_toggle_hides_and_shows_all_tags() -> void:
 	holder.name = "Holder"
 	add_child(holder)
 	_make_tag(holder)
-	DebugNametags.show_all()
+	DebugNametag.show_all(get_tree())
 
 	# Act
-	DebugNametags.hide_all()
+	DebugNametag.hide_all(get_tree())
 
 	# Assert
 	for node in get_tree().get_nodes_in_group(GameConfig.DEBUG_NAMETAG):
 		assert_bool((node as CanvasItem).visible).is_false()
 
 	# Cleanup — devolve visível para os próximos testes
-	DebugNametags.show_all()
+	DebugNametag.show_all(get_tree())
 
 
 func test_content_shows_name_and_hp() -> void:
