@@ -64,6 +64,7 @@ func _ready() -> void:
 ##
 func _apply_stats()-> void:
 	_health.max_amount = max_hp
+	_health.replenish()
 	_health.invulnerable = not destructible
 	_score.points = score
 	_hit_area.hit_data = contact_damage
