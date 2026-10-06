@@ -20,6 +20,8 @@ Toda entrada commitada carrega o SHA curto do commit (`git show <sha>`)
   gerando uma linha `Turn stopped` por frame. Guard por
   `angular_direction != 0.0` — dispara uma vez por solta de tecla.
   (`b39efa5`)
+- Migração HP para `GameResource` + trauma derivado + logs nos sistemas
+  (`160b5c3`)
 
 ### Refatorado
 - **Mecanismo `SpaceShip2D` vira `SteerableBody2D`**: a física (thrust+giro)
@@ -36,6 +38,10 @@ Toda entrada commitada carrega o SHA curto do commit (`git show <sha>`)
   removendo hardcode de valores (`de3728f`, `90c2a6d`)
 - Sistema de combate: componentes `HurtShape` tipados, integração com
   sistema de dano (`94d4220`, `8bcda03`)
+- Migração HP para `GameResource` com sistema de trauma derivado
+  e integração com logging (`d63f963`)
+- Sistema `GameResource` + `ScoreSingleton` com fiação completa na cena
+  (`ac5beed`)
 
 ### Adicionado
 - Lib de logging em `Source/Debug/Log/` (`Log` estático, sem autoload).
@@ -63,3 +69,18 @@ Toda entrada commitada carrega o SHA curto do commit (`git show <sha>`)
   sem duplicação) (`2c0fce8`)
 - Reconciliação de backlog: fechamento de itens 1.1, 1.2, 1.3, 2.1
   com evidências de implementação (`4245df2`)
+- Sistema `GameResource` para HP com trauma derivado e `ScoreSingleton`
+  sem limite; fiação completa na cena (`ac5beed`, `d63f963`)
+- Debug nametags: labels por entidade com API de toggle no autoload
+  e sistema de camadas UI centralizadas (`77b6832`, `b098361`)
+- Asteroide nasce com HP cheio e replenish após definir máximo (`e74f078`)
+- Score sem teto + regras de orquestração documentadas no AGENTS.md
+  (`cef3bf9`)
+- Testes para arquitetura por exports + atlas de asteroides atualizado
+  (`1b68b39`)
+- Cenas por herança + componentes que se pintam, sem camada .tres
+  (`53a65a8`)
+- Editor: main scene, atlas reexportado, prefabs reorganizados
+  (`469f9bb`)
+- Reorganização de prefabs e montagem de hurtbox/asteroide no editor
+  (`6ad8d26`)
