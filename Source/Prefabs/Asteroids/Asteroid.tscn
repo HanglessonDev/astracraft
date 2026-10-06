@@ -147,4 +147,3 @@ autoplay = &"float"
 [connection signal="damaged" from="SteerableBody2D/Visual/HurtArea2D" to="HealthResource" method="decrease"]
 [connection signal="depleted" from="HealthResource" to="." method="queue_free"]
 [connection signal="depleted" from="HealthResource" to="ScorePoint" method="score"]
-[connection signal="ready" from="HealthResource" to="HealthResource" method="replenish"]

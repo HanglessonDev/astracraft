@@ -15,6 +15,7 @@
 [node name="AsteroidTypeA" parent="." unique_id=2101305267 instance=ExtResource("2_tc5dw")]
 position = Vector2(440, -157)
 size = 0.3
+max_hp = 5
 
 [node name="AsteroidTypeB" parent="." unique_id=1786950984 instance=ExtResource("3_12dlj")]
 position = Vector2(-221, -245)

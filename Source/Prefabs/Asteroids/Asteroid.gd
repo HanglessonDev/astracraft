@@ -56,7 +56,6 @@ func _ready() -> void:
 	_apply_visual()
 	
 	if Engine.is_editor_hint():
-		_apply_stats.call_deferred()
 		return
 	
 	_apply_stats()
