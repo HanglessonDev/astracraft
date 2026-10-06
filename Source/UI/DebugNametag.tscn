@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Source/UI/DebugNametag.gd" id="1"]
+
+[node name="DebugNametag" type="Label"]
+script = ExtResource("1")
+text = "?"
+horizontal_alignment = 1
+size = Vector2(200, 24)
+mouse_filter = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6

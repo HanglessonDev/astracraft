@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cp248ersa428j" path="res://Source/SteerableBody/SteerableBody2D.tscn" id="1_ytlwm"]
 [ext_resource type="Script" uid="uid://bmah0tmifxca6" path="res://Source/Actors/Player/KeyboardSpaceshipController.gd" id="2_8mkyk"]
 [ext_resource type="Texture2D" uid="uid://ds2d20qtmm65d" path="res://Assets/Images/Dev/player_ship_placeholder_512.png" id="2_hk4yk"]
+[ext_resource type="PackedScene" path="res://Source/UI/DebugNametag.tscn" id="3_tag"]
 [ext_resource type="Script" uid="uid://di6vfgvqfqb5y" path="res://Source/Systems/Combat/HurtArea2D.gd" id="4_00tdp"]
 [ext_resource type="PackedScene" uid="uid://de7uf2184m7wl" path="res://Source/Systems/Weapon/Weapon2D.tscn" id="4_om7ne"]
 [ext_resource type="PackedScene" uid="uid://r56e2ov1blxf" path="res://Source/Prefabs/Bullets/BulletDev.tscn" id="5_egwhy"]
@@ -17,6 +18,12 @@ bullet_packed_scene = ExtResource("5_egwhy")
 metadata/_custom_type_script = "uid://d3smiw7ey3ilo"
 
 [node name="Player" type="Node2D" unique_id=788517319]
+
+[node name="DebugNametag" parent="." unique_id=309418514 node_paths=PackedStringArray("target", "entity") instance=ExtResource("3_tag")]
+offset_right = 200.0
+offset_bottom = 24.0
+target = NodePath("../Spaceship2D")
+entity = NodePath("..")
 
 [node name="Spaceship2D" parent="." unique_id=1387274257 instance=ExtResource("1_ytlwm")]
 

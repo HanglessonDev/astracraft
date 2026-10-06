@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dv8bt81ht4kev" path="res://Source/Systems/Combat/HitArea2D.tscn" id="2_amggc"]
 [ext_resource type="SpriteFrames" uid="uid://orw2ar7rlyjj" path="res://Assets/Images/Asteroids/asteroid_atlas.tres" id="2_htjcc"]
 [ext_resource type="PackedScene" uid="uid://c8sxeuu1roa12" path="res://Source/Systems/Combat/HurtArea2D.tscn" id="3_r21cw"]
+[ext_resource type="Script" uid="uid://c1twwbq7dnyue" path="res://Source/UI/DebugNametag.gd" id="4_5otuu"]
 [ext_resource type="Texture2D" uid="uid://d1onowcb0r3qf" path="res://Assets/Images/Asteroids/asteroid_atlas.png" id="5_1j6jp"]
 [ext_resource type="Script" uid="uid://vce52pb1bdyl" path="res://Source/Systems/Combat/HitData.gd" id="5_rtvet"]
 [ext_resource type="PackedScene" uid="uid://cwwqql21sye1y" path="res://Source/Core/ScoreSingleton/ScorePoint.tscn" id="7_cakvm"]
@@ -86,6 +87,17 @@ script = ExtResource("1_rvkjb")
 atlas = ExtResource("2_htjcc")
 contact_damage = SubResource("Resource_kf567")
 
+[node name="DebugNametag" type="Label" parent="." unique_id=569728089 node_paths=PackedStringArray("target", "entity")]
+offset_top = -467.0
+offset_right = 40.0
+offset_bottom = -444.0
+text = "?"
+script = ExtResource("4_5otuu")
+target = NodePath("../SteerableBody2D")
+entity = NodePath("..")
+y_offset = -100.0
+metadata/_custom_type_script = "uid://c1twwbq7dnyue"
+
 [node name="SteerableBody2D" type="RigidBody2D" parent="." unique_id=1026352820]
 unique_name_in_owner = true
 script = ExtResource("1_dxue8")
@@ -126,6 +138,7 @@ points = 10
 
 [node name="HealthResource" parent="." unique_id=1280494106 instance=ExtResource("8_xtav5")]
 unique_name_in_owner = true
+max_amount = 3
 
 [node name="Animations" type="AnimationPlayer" parent="." unique_id=1769540087]
 libraries/ = SubResource("AnimationLibrary_j5p6f")

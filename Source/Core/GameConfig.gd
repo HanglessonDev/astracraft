@@ -18,6 +18,9 @@ const ASTEROIDS: StringName = &"asteroids"
 ## freely, just keep it in the group.
 const BULLET_CONTAINER: StringName = &"bullet_container"
 
+## Group for debug nametags (operated in bulk by the DebugNametags autoload).
+const DEBUG_NAMETAG: StringName = &"debug_nametag"
+
 
 ## Input actions (Project Settings > Input Map). Use these as defaults for
 ## exported action names instead of string literals — a typo here fails once,
