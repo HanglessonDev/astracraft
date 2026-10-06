@@ -370,8 +370,8 @@ func _cmd_spawn(args: Array) -> String:
 	return "spawnados %d" % n
 
 
-## Toggles the debug nametags through the DebugNametags autoload.
+## Toggles the debug nametags through the DebugNametag bulk statics.
 ## @return New visibility state
 func _cmd_tags() -> String:
-	DebugNametags.toggle()
-	return "tags visiveis" if DebugNametags.is_showing() else "tags ocultas"
+	DebugNametag.toggle(get_tree())
+	return "tags visiveis" if DebugNametag.is_showing() else "tags ocultas"

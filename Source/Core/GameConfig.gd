@@ -24,7 +24,7 @@ const PLAYER_SHIP: StringName = &"player_ship"
 ## freely, just keep it in the group.
 const BULLET_CONTAINER: StringName = &"bullet_container"
 
-## Group for debug nametags (operated in bulk by the DebugNametags autoload).
+## Group for debug nametags (bulk ops are DebugNametag statics).
 const DEBUG_NAMETAG: StringName = &"debug_nametag"
 
 
