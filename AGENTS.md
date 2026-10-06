@@ -83,3 +83,13 @@ Aqui só o que é Godot/astracraft.
 - Lib suites live with the lib (`Source/Debug/Log/tests/`) — pass an extra
   `-a "res://Source/Debug/Log/tests"` to run them headless.
 
+## Worktrees (trabalho em paralelo)
+
+- Sessão principal: `F:\GitHub\Godot\astracraft` (branches `task-*`).
+- Worktree do usuário: `F:\GitHub\Godot\astracraft-user`, sempre na `main`.
+- Uma branch, uma worktree — ninguém troca de branch para mergear: merges
+  entram pela tree que estiver na `main` (`git -C <tree> merge --no-ff task-x`).
+- Pós-merge na `main`: `git -C <user-tree> pull --ff-only` (só com ela limpa).
+- Trazer trabalho da user tree: `checkout <branch> -- <paths>` (seletivo),
+  `cherry-pick <sha>` (commit inteiro) — só vale para conteúdo commitado.
+
