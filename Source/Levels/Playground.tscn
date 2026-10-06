@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://xl0itenii02j" path="res://Source/Actors/Player/Player.tscn" id="1_gdr0c"]
 [ext_resource type="PackedScene" uid="uid://b34g1t1qmqj2v" path="res://Source/Prefabs/Asteroids/AsteroidTypeA.tscn" id="2_tc5dw"]
 [ext_resource type="PackedScene" uid="uid://bay321i4lgdjh" path="res://Source/Prefabs/Asteroids/AsteroidTypeB.tscn" id="3_12dlj"]
+[ext_resource type="PackedScene" path="res://Source/Debug/Console/DebugConsole.tscn" id="4_con01"]
 
 [node name="Playground" type="Node2D" unique_id=1763172920]
 
@@ -20,3 +21,5 @@ max_hp = 5
 [node name="AsteroidTypeB" parent="." unique_id=1786950984 instance=ExtResource("3_12dlj")]
 position = Vector2(-221, -245)
 size = 0.3
+
+[node name="DebugConsole" parent="." instance=ExtResource("4_con01")]

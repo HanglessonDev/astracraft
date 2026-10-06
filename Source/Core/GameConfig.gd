@@ -13,6 +13,12 @@ const ENEMY_TEAM: StringName = &"enemy_team"
 const HAZARDS: StringName = &"hazards"
 const ASTEROIDS: StringName = &"asteroids"
 
+## Group identifying THE player ship node (identity, exactly one).
+## Not the same as PLAYER_TEAM (affiliation, N members: a future fleet
+## or allied bullet in the team group must never resolve as "the player").
+## Used by the debug console as default command target.
+const PLAYER_SHIP: StringName = &"player_ship"
+
 ## Group for the node that collects spawned projectiles (ex.: "Bullets").
 ## Spawner2D resolves its container through this group — rename the node
 ## freely, just keep it in the group.
