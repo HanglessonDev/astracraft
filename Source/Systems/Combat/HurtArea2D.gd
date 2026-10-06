@@ -7,7 +7,7 @@ extends Area2D
 signal damaged(damage_receiveid: int)
 
 ## Defense value that reduces incoming damage.
-@export var defese:= 0
+@export var defense:= 0
 
 ## Team affiliation for friendly fire checks.
 @export var team:= GameConfig.ENEMY_TEAM
@@ -25,8 +25,8 @@ func _ready() -> void:
 func hurt(hit_data:HitData) -> int:
 	var damage : =0
 	
-	damage = hit_data.damage - defese
-	Log.debug(&"combat", "Damage calculated", {"raw_damage": hit_data.damage, "defense": defese, "final_damage": damage})
+	damage = hit_data.damage - defense
+	Log.debug(&"combat", "Damage calculated", {"raw_damage": hit_data.damage, "defense": defense, "final_damage": damage})
 	
 	Log.info(&"combat", "Damage received", {"damage": damage})
 	damaged.emit(damage)
