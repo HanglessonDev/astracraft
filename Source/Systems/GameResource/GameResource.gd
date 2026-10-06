@@ -26,11 +26,16 @@ func set_max_amount(new_max_amount: int) -> void:
 		current_amount = new_max_amount
 	max_changed.emit(max_amount)
 
-##
+## Assigns and clamps the current amount, notifying listeners.
+## Depleted/replenished fire only while inside the tree, so scene
+## deserialization and autoload boot never trigger death/birth events.
 func set_current_amount(new_current_amount: int) -> void:
 	current_amount = clampi(new_current_amount, 0 , max_amount)
 	current_changed.emit(current_amount)
-	
+
+	if not is_inside_tree():
+		return
+
 	if current_amount < 1 and not invulnerable:
 		Log.info(&"resource", "Depleted", {"max": max_amount})
 		depleted.emit()
