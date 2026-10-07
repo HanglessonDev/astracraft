@@ -19,6 +19,12 @@ const ASTEROIDS: StringName = &"asteroids"
 ## Used by the debug console as default command target.
 const PLAYER_SHIP: StringName = &"player_ship"
 
+## Group identifying enemy ships with AI (identity set, N members).
+## Not the same as ASTEROIDS (rocks only) nor ENEMY_TEAM (affiliation):
+## a Krustis is never an asteroid, and a future allied drone must never
+## resolve as an enemy. Used by the debug console target lookup.
+const ENEMIES: StringName = &"enemies"
+
 ## Group for the node that collects spawned projectiles (ex.: "Bullets").
 ## Spawner2D resolves its container through this group — rename the node
 ## freely, just keep it in the group.
@@ -46,6 +52,14 @@ const UI_COMPASS := 50
 const UI_TRACKER := 60
 const UI_DEBUG := 70
 const UI_FADE := 80
+
+## Camadas de fisica 2D (valores de bit, espelham project.godot).
+## .tscn nao enxerga consts — os numeros crus continuam la; estas consts
+## valem para codigo (masks, raycasts) e como documentacao unica.
+## 1 = Ambient, 2 = Combat, 3 = Vision.
+const LAYER_AMBIENT := 1
+const LAYER_COMBAT := 2
+const LAYER_VISION := 4
 
 ## Helpers de grupo: prefira eles a is_in_group solto — typo vira erro
 ## num lugar so, e o call site ganha autocomplete + leitura.

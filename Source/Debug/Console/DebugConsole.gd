@@ -199,7 +199,8 @@ func _register_commands() -> void:
 
 
 ## Target: "" or "me" = player ship; "asteroid" = first asteroid;
-## otherwise a node name inside the ship/asteroid groups.
+## "enemy" = first enemy; otherwise a node name inside the ship,
+## asteroid or enemy groups.
 ## @param token Raw target token from the command line
 ## @return Target root, null when nothing matches
 func _resolve_target(token: String) -> Node:
@@ -210,7 +211,9 @@ func _resolve_target(token: String) -> Node:
 		return tree.get_first_node_in_group(GameConfig.PLAYER_SHIP)
 	if token == "asteroid":
 		return tree.get_first_node_in_group(GameConfig.ASTEROIDS)
-	for group in [GameConfig.PLAYER_SHIP, GameConfig.ASTEROIDS]:
+	if token == "enemy":
+		return tree.get_first_node_in_group(GameConfig.ENEMIES)
+	for group in [GameConfig.PLAYER_SHIP, GameConfig.ASTEROIDS, GameConfig.ENEMIES]:
 		for n in tree.get_nodes_in_group(group):
 			if String(n.name).to_lower() == token.to_lower():
 				return n

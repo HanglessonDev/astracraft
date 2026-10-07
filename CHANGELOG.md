@@ -98,3 +98,7 @@ Toda entrada commitada carrega o SHA curto do commit (`git show <sha>`)
   score/spawn/tags`), alvos via `GameConfig.PLAYER_SHIP` + `ASTEROIDS`,
   instância por level no `Playground.tscn`; `test_debug_console.gd`
   (8 casos). (`eab3c39`)
+- Inimigo SkotavorKrustis inerte: montagem, atlas, animacoes, sfx/vfx,
+  Vision areas, `RandomDirection`, grupo `ENEMIES`, consts `LAYER_*`;
+  sem `AnimationTree` (idle em autoplay); combate fiado com teste de
+  morte (`test_skotavor_krustis.gd`). (`8c3170f`)

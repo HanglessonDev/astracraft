@@ -1,0 +1,574 @@
+[gd_scene format=3 uid="uid://b8mflsh3eqo2o"]
+
+[ext_resource type="PackedScene" uid="uid://cp248ersa428j" path="res://Source/SteerableBody/SteerableBody2D.tscn" id="1_g3myt"]
+[ext_resource type="PackedScene" uid="uid://dv8bt81ht4kev" path="res://Source/Systems/Combat/HitArea2D.tscn" id="3_ewpww"]
+[ext_resource type="PackedScene" uid="uid://c01qqs6h7acvd" path="res://Source/Systems/Vision/VisionArea2d.tscn" id="3_lo4lm"]
+[ext_resource type="PackedScene" uid="uid://c8sxeuu1roa12" path="res://Source/Systems/Combat/HurtArea2D.tscn" id="4_0n61b"]
+[ext_resource type="Texture2D" uid="uid://b7bxt5vj03ma1" path="res://Assets/Images/Ships/krustis_atlas.png" id="4_o6n2o"]
+[ext_resource type="Script" uid="uid://vce52pb1bdyl" path="res://Source/Systems/Combat/HitData.gd" id="6_1lc0t"]
+[ext_resource type="PackedScene" uid="uid://de7uf2184m7wl" path="res://Source/Systems/Weapon/Weapon2D.tscn" id="6_ntang"]
+[ext_resource type="Script" uid="uid://d3smiw7ey3ilo" path="res://Source/Systems/Weapon/WeaponStats.gd" id="8_e1tx6"]
+[ext_resource type="PackedScene" uid="uid://bf812a6j64lt0" path="res://Source/Prefabs/Bullets/AcidSpitBullet2D.tscn" id="9_04mlp"]
+[ext_resource type="Texture2D" uid="uid://h3dm26wdrfqg" path="res://Assets/Images/Vfx/explosion_atlas.png" id="10_e1tx6"]
+[ext_resource type="AudioStream" uid="uid://2v3aa8n5ffdn" path="res://Assets/Sounds/Sfx/contant_aghony__spawn-sound.ogg" id="11_mh4di"]
+[ext_resource type="PackedScene" uid="uid://cwwqql21sye1y" path="res://Source/Core/ScoreSingleton/ScorePoint.tscn" id="12_6feqf"]
+[ext_resource type="PackedScene" uid="uid://b6k2txha600c7" path="res://Source/Systems/GameResource/GameResource.tscn" id="12_xkvby"]
+[ext_resource type="AnimationLibrary" uid="uid://dlap07cyn7tuv" path="res://Data/Animations/SkotavorKrustis.tres" id="13_04mlp"]
+[ext_resource type="PackedScene" uid="uid://pmyvlf2xwfip" path="res://Source/Systems/Tools/Position/RandomDirection.tscn" id="16_04mlp"]
+[ext_resource type="PackedScene" uid="uid://2t1auht0wxh5" path="res://Source/UI/DebugNametag.tscn" id="17_tag"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lo4lm"]
+radius = 300.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4"]
+atlas = ExtResource("4_o6n2o")
+region = Rect2(223, 0, 26, 115)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5"]
+atlas = ExtResource("4_o6n2o")
+region = Rect2(223, 121, 19, 114)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3"]
+atlas = ExtResource("4_o6n2o")
+region = Rect2(101, 119, 116, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6"]
+atlas = ExtResource("4_o6n2o")
+region = Rect2(0, 157, 48, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2"]
+atlas = ExtResource("4_o6n2o")
+region = Rect2(101, 0, 103, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("4_o6n2o")
+region = Rect2(0, 0, 95, 151)
+
+[sub_resource type="Resource" id="Resource_6feqf"]
+script = ExtResource("6_1lc0t")
+damage = 2
+metadata/_custom_type_script = "uid://vce52pb1bdyl"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wvhbo"]
+radius = 73.00685
+
+[sub_resource type="Resource" id="Resource_wvhbo"]
+script = ExtResource("8_e1tx6")
+fire_rate = 2.0
+bullet_packed_scene = ExtResource("9_04mlp")
+metadata/_custom_type_script = "uid://d3smiw7ey3ilo"
+
+[sub_resource type="Animation" id="Animation_mh4di"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Vfx/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Vfx/Sprite2D:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 272, 260, 263)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Vfx/Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Vfx/Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Vfx/Sprite2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04mlp"]
+atlas = ExtResource("10_e1tx6")
+region = Rect2(0, 272, 260, 263)
+
+[sub_resource type="Animation" id="Animation_xkvby"]
+resource_name = "spawn_portal"
+length = 1.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Vfx/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("AtlasTexture_04mlp"), SubResource("AtlasTexture_04mlp")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Vfx/Sprite2D:texture:region")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.14999999, 0.25, 0.35, 0.45, 0.65, 1.1500001, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 298, 268), Rect2(0, 540, 106, 119), Rect2(264, 528, 175, 180), Rect2(574, 265, 248, 247), Rect2(264, 273, 241, 250), Rect2(574, 0, 263, 259), Rect2(0, 272, 260, 263), Rect2(0, 0, 298, 268), Rect2(510, 519, 236, 233)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Vfx/Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.04999999, 1.2999998, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -6.283185307179586, 3.141592653589793]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Vfx/Sprite2D:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.3, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Vfx/Sprite2D:scale")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.04999999, 0.14999999, 1.2, 1.3, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.45, 0.45), Vector2(1, 1), Vector2(1, 1), Vector2(0.5, 0.5), Vector2(0.75, 0.75)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_mh4di")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6feqf"]
+_data = {
+&"RESET": SubResource("Animation_mh4di"),
+&"spawn_portal": SubResource("Animation_xkvby")
+}
+
+[sub_resource type="Animation" id="Animation_sh7af"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SteerableBody2D/Visual/Rig:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bss4i"]
+_data = {
+&"RESET": SubResource("Animation_sh7af")
+}
+
+[node name="SkotavorKrustis" type="Node2D" unique_id=1825884446 groups=["enemies"]]
+
+[node name="DebugNametag" parent="." unique_id=1658987009 node_paths=PackedStringArray("target", "entity") instance=ExtResource("17_tag")]
+offset_right = 40.0
+offset_bottom = 23.0
+target = NodePath("../SteerableBody2D")
+entity = NodePath("..")
+y_offset = -100.0
+
+[node name="SteerableBody2D" parent="." unique_id=1387274257 instance=ExtResource("1_g3myt")]
+linear_acceleration = 600.0
+
+[node name="VisionArea2D" parent="SteerableBody2D" unique_id=636980447 instance=ExtResource("3_lo4lm")]
+unique_name_in_owner = true
+
+[node name="Shape" type="CollisionShape2D" parent="SteerableBody2D/VisionArea2D" unique_id=636556509]
+shape = SubResource("CircleShape2D_lo4lm")
+debug_color = Color(1, 0, 1, 0.09803922)
+
+[node name="Visual" type="Node2D" parent="SteerableBody2D" unique_id=1755218411]
+unique_name_in_owner = true
+scale = Vector2(0.3, 0.3)
+
+[node name="Sprites" type="Node2D" parent="SteerableBody2D/Visual" unique_id=443110294]
+unique_name_in_owner = true
+
+[node name="LegTopRight" type="Node2D" parent="SteerableBody2D/Visual/Sprites" unique_id=327126923]
+position = Vector2(40.000004, -48.000004)
+rotation = -2.53073
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/LegTopRight" unique_id=2020974022]
+texture = SubResource("AtlasTexture_4")
+offset = Vector2(0, 47)
+region_rect = Rect2(554, 15, 25, 114)
+
+[node name="FootTopRight" type="Node2D" parent="SteerableBody2D/Visual/Sprites/LegTopRight" unique_id=998355614]
+position = Vector2(0.013591766, 97.652435)
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/LegTopRight/FootTopRight" unique_id=1634361087]
+z_index = -1
+position = Vector2(1.0647277, -1.966305)
+texture = SubResource("AtlasTexture_5")
+offset = Vector2(0, 47)
+region_rect = Rect2(558, 140, 19, 114)
+
+[node name="LegBottomRight" type="Node2D" parent="SteerableBody2D/Visual/Sprites" unique_id=1790484540]
+position = Vector2(40, 48)
+rotation = -0.78540003
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/LegBottomRight" unique_id=385204109]
+texture = SubResource("AtlasTexture_4")
+offset = Vector2(0, 47)
+region_rect = Rect2(554, 15, 25, 114)
+
+[node name="FootBottomRight" type="Node2D" parent="SteerableBody2D/Visual/Sprites/LegBottomRight" unique_id=1049956021]
+position = Vector2(-1.9073486e-06, 90.50967)
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/LegBottomRight/FootBottomRight" unique_id=1435495633]
+z_index = -1
+position = Vector2(1.0647277, -1.966305)
+texture = SubResource("AtlasTexture_5")
+offset = Vector2(0, 54)
+region_rect = Rect2(558, 140, 19, 114)
+
+[node name="LegTopLeft" type="Node2D" parent="SteerableBody2D/Visual/Sprites" unique_id=426428924]
+position = Vector2(-24, -40)
+rotation = 2.53073
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/LegTopLeft" unique_id=608111123]
+texture = SubResource("AtlasTexture_4")
+offset = Vector2(0, 47)
+region_rect = Rect2(554, 15, 25, 114)
+
+[node name="FootTopLeft" type="Node2D" parent="SteerableBody2D/Visual/Sprites/LegTopLeft" unique_id=1321151907]
+position = Vector2(-0.013605118, 97.652435)
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/LegTopLeft/FootTopLeft" unique_id=1141525203]
+z_index = -1
+position = Vector2(1.0647277, -1.966305)
+texture = SubResource("AtlasTexture_5")
+offset = Vector2(0, 49)
+region_rect = Rect2(558, 140, 19, 114)
+
+[node name="LegBottomLeft" type="Node2D" parent="SteerableBody2D/Visual/Sprites" unique_id=321146689]
+position = Vector2(-23.999998, 40)
+rotation = 0.78540003
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/LegBottomLeft" unique_id=1219034266]
+texture = SubResource("AtlasTexture_4")
+offset = Vector2(0, 47)
+region_rect = Rect2(554, 15, 25, 114)
+
+[node name="FootBottomLeft" type="Node2D" parent="SteerableBody2D/Visual/Sprites/LegBottomLeft" unique_id=128222483]
+position = Vector2(1.9073486e-06, 90.50966)
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/LegBottomLeft/FootBottomLeft" unique_id=1037150914]
+z_index = -1
+position = Vector2(1.0647277, -1.966305)
+texture = SubResource("AtlasTexture_5")
+offset = Vector2(0, 55.855)
+region_rect = Rect2(558, 140, 19, 114)
+
+[node name="Body" type="Node2D" parent="SteerableBody2D/Visual/Sprites" unique_id=177015966]
+
+[node name="Bottom" type="Node2D" parent="SteerableBody2D/Visual/Sprites/Body" unique_id=1154774801]
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/Body/Bottom" unique_id=52769952]
+position = Vector2(0, 29)
+texture = SubResource("AtlasTexture_3")
+region_rect = Rect2(421, 323, 116, 58)
+
+[node name="Sprite2D2" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/Body/Bottom" unique_id=793173089]
+position = Vector2(0, -29)
+texture = SubResource("AtlasTexture_3")
+flip_v = true
+region_rect = Rect2(421, 323, 116, 58)
+
+[node name="Middle" type="Node2D" parent="SteerableBody2D/Visual/Sprites/Body" unique_id=684142216]
+
+[node name="Muzzle" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/Body/Middle" unique_id=1994188209]
+position = Vector2(48, 0)
+texture = SubResource("AtlasTexture_6")
+region_rect = Rect2(543, 278, 46, 36)
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/Body/Middle" unique_id=1727656030]
+texture = SubResource("AtlasTexture_2")
+region_rect = Rect2(426, 183, 102, 113)
+
+[node name="Top" type="Node2D" parent="SteerableBody2D/Visual/Sprites/Body" unique_id=1084932325]
+
+[node name="Sprite2D" type="Sprite2D" parent="SteerableBody2D/Visual/Sprites/Body/Top" unique_id=1637416007]
+texture = SubResource("AtlasTexture_1")
+offset = Vector2(27, 0)
+region_rect = Rect2(434, 16, 95, 150)
+
+[node name="Rig" type="Skeleton2D" parent="SteerableBody2D/Visual" unique_id=251412949]
+unique_name_in_owner = true
+visible = false
+
+[node name="Body" type="Bone2D" parent="SteerableBody2D/Visual/Rig" unique_id=1354100981]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+
+[node name="RTBody" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body" unique_id=656460583]
+remote_path = NodePath("../../../Sprites/Body")
+
+[node name="RTHitArea" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body" unique_id=1983613332]
+remote_path = NodePath("../../../HitArea2D")
+
+[node name="RTHurtArea" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body" unique_id=800535842]
+scale = Vector2(0.9999999, 0.9999999)
+remote_path = NodePath("../../../HurtArea2D")
+
+[node name="RTCollision" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body" unique_id=1931667813]
+remote_path = NodePath("../../../../Collision")
+
+[node name="BodyTop" type="Bone2D" parent="SteerableBody2D/Visual/Rig/Body" unique_id=217075161]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="RTBodyTop" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body/BodyTop" unique_id=1662618462]
+remote_path = NodePath("../../../../Sprites/Body/Top")
+
+[node name="Muzzle" type="Bone2D" parent="SteerableBody2D/Visual/Rig/Body" unique_id=783210897]
+position = Vector2(48, 0)
+rest = Transform2D(1, 0, 0, 1, 48, 0)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="RTMuzzle" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body/Muzzle" unique_id=501742785]
+remote_path = NodePath("../../../../Sprites/Body/Middle/Muzzle")
+
+[node name="LegTopRight" type="Bone2D" parent="SteerableBody2D/Visual/Rig/Body" unique_id=2021775983]
+position = Vector2(40.000004, -48.000004)
+rotation = -2.53073
+rest = Transform2D(-0.81915206, -0.57357645, 0.57357645, -0.81915206, 40.000004, -48.000004)
+
+[node name="RTLegTopRight" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body/LegTopRight" unique_id=1156290821]
+remote_path = NodePath("../../../../Sprites/LegTopRight")
+
+[node name="FootTopRight" type="Bone2D" parent="SteerableBody2D/Visual/Rig/Body/LegTopRight" unique_id=886516631]
+position = Vector2(0.01359272, 97.652435)
+rest = Transform2D(1, 0, 0, 1, 0.01359272, 97.652435)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="RTFootTopRight" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body/LegTopRight/FootTopRight" unique_id=1952827900]
+remote_path = NodePath("../../../../../Sprites/LegTopRight/FootTopRight")
+
+[node name="LegBottomRight" type="Bone2D" parent="SteerableBody2D/Visual/Rig/Body" unique_id=1407984051]
+position = Vector2(40, 48)
+rotation = -0.7854
+rest = Transform2D(0.7071067, -0.7071067, 0.7071067, 0.7071067, 40, 48)
+
+[node name="RTLegBottomRight" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body/LegBottomRight" unique_id=1393873143]
+remote_path = NodePath("../../../../Sprites/LegBottomRight")
+
+[node name="FootBottomRight" type="Bone2D" parent="SteerableBody2D/Visual/Rig/Body/LegBottomRight" unique_id=845605705]
+position = Vector2(0, 90.509674)
+rest = Transform2D(1, 0, 0, 1, 0, 90.509674)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="RTFootBottomRight" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body/LegBottomRight/FootBottomRight" unique_id=955625437]
+remote_path = NodePath("../../../../../Sprites/LegBottomRight/FootBottomRight")
+
+[node name="LegTopLeft" type="Bone2D" parent="SteerableBody2D/Visual/Rig/Body" unique_id=854310915]
+position = Vector2(-24, -40)
+rotation = 2.53073
+rest = Transform2D(-0.81915206, 0.57357645, -0.57357645, -0.81915206, -24, -40)
+
+[node name="RTLegTopLeft" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body/LegTopLeft" unique_id=373494951]
+remote_path = NodePath("../../../../Sprites/LegTopLeft")
+
+[node name="FootTopLeft" type="Bone2D" parent="SteerableBody2D/Visual/Rig/Body/LegTopLeft" unique_id=1230232693]
+position = Vector2(-0.01360321, 97.65244)
+rest = Transform2D(1, 0, 0, 1, -0.01360321, 97.65244)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="RTFootTopLeft" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body/LegTopLeft/FootTopLeft" unique_id=1389513471]
+remote_path = NodePath("../../../../../Sprites/LegTopLeft/FootTopLeft")
+
+[node name="LegBottomLeft" type="Bone2D" parent="SteerableBody2D/Visual/Rig/Body" unique_id=429425275]
+position = Vector2(-23.999996, 40)
+rotation = 0.7854
+rest = Transform2D(0.7071067, 0.7071067, -0.7071067, 0.7071067, -23.999996, 40)
+
+[node name="RTLegBottomLeft" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body/LegBottomLeft" unique_id=1746508723]
+remote_path = NodePath("../../../../Sprites/LegBottomLeft")
+
+[node name="FootBottomLeft" type="Bone2D" parent="SteerableBody2D/Visual/Rig/Body/LegBottomLeft" unique_id=1310929437]
+position = Vector2(0, 90.50967)
+rest = Transform2D(1, 0, 0, 1, 0, 90.50967)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = 0.0
+
+[node name="RTFootBottomLeft" type="RemoteTransform2D" parent="SteerableBody2D/Visual/Rig/Body/LegBottomLeft/FootBottomLeft" unique_id=1336562137]
+remote_path = NodePath("../../../../../Sprites/LegBottomLeft/FootBottomLeft")
+
+[node name="RTCollisionShape" type="RemoteTransform2D" parent="SteerableBody2D/Visual" unique_id=1276991874]
+remote_path = NodePath("../../Collision")
+
+[node name="HitArea2D" parent="SteerableBody2D/Visual" unique_id=374486296 instance=ExtResource("3_ewpww")]
+unique_name_in_owner = true
+hit_data = SubResource("Resource_6feqf")
+debug_color = Color(1, 0.23137255, 0.1882353, 0)
+
+[node name="Shape" type="CollisionShape2D" parent="SteerableBody2D/Visual/HitArea2D" unique_id=353927647]
+scale = Vector2(1.05, 1.05)
+shape = SubResource("CircleShape2D_wvhbo")
+debug_color = Color(1, 0.23137255, 0.1882353, 0)
+
+[node name="HurtArea2D" parent="SteerableBody2D/Visual" unique_id=650076086 instance=ExtResource("4_0n61b")]
+unique_name_in_owner = true
+scale = Vector2(0.99999994, 0.99999994)
+debug_color = Color(0.20392157, 0.78039217, 0.34901962, 0)
+
+[node name="Shape" type="CollisionShape2D" parent="SteerableBody2D/Visual/HurtArea2D" unique_id=2008066566]
+shape = SubResource("CircleShape2D_wvhbo")
+debug_color = Color(0.20392157, 0.78039217, 0.34901962, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="SteerableBody2D" unique_id=1333202503]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_wvhbo")
+
+[node name="Mounts" type="Node2D" parent="SteerableBody2D" unique_id=1064924427]
+
+[node name="Weapon2D" parent="SteerableBody2D/Mounts" unique_id=330528176 instance=ExtResource("6_ntang")]
+weapon_stats = SubResource("Resource_wvhbo")
+
+[node name="Vfx" type="Node2D" parent="." unique_id=1177840373]
+scale = Vector2(0.3, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Vfx" unique_id=555893153]
+z_index = -2
+
+[node name="VfxAnimations" type="AnimationPlayer" parent="." unique_id=712768365]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_6feqf")
+
+[node name="Animations" type="AnimationPlayer" parent="." unique_id=322584735]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_bss4i")
+libraries/SkotavorKrustis = ExtResource("13_04mlp")
+autoplay = &"SkotavorKrustis/idle"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1450020345]
+
+[node name="ScorePoint" parent="." unique_id=1523271819 instance=ExtResource("12_6feqf")]
+points = 50
+
+[node name="HealthResource" parent="." unique_id=1280494106 instance=ExtResource("12_xkvby")]
+unique_name_in_owner = true
+
+[node name="RandomDirection" parent="." unique_id=722610731 instance=ExtResource("16_04mlp")]
+
+[connection signal="damaged" from="SteerableBody2D/Visual/HurtArea2D" to="HealthResource" method="decrease"]
+[connection signal="depleted" from="HealthResource" to="." method="queue_free"]
+[connection signal="depleted" from="HealthResource" to="ScorePoint" method="score"]
+[connection signal="ready" from="HealthResource" to="HealthResource" method="replenish"]
+[connection signal="angle_randomized" from="RandomDirection" to="SteerableBody2D" method="set_global_rotation"]
