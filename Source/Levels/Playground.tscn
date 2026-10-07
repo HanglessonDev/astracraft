@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b34g1t1qmqj2v" path="res://Source/Prefabs/Asteroids/AsteroidTypeA.tscn" id="2_tc5dw"]
 [ext_resource type="PackedScene" uid="uid://bay321i4lgdjh" path="res://Source/Prefabs/Asteroids/AsteroidTypeB.tscn" id="3_12dlj"]
 [ext_resource type="PackedScene" path="res://Source/Debug/Console/DebugConsole.tscn" id="4_con01"]
+[ext_resource type="PackedScene" uid="uid://b8mflsh3eqo2o" path="res://Source/Actors/Enemies/SkotavorKrustis.tscn" id="5_krust"]
 
 [node name="Playground" type="Node2D" unique_id=1763172920]
 
@@ -12,6 +13,7 @@
 [node name="Bullets" type="Node2D" parent="." unique_id=1271561990 groups=["bullet_container"]]
 
 [node name="Player" parent="." unique_id=788517319 instance=ExtResource("1_gdr0c")]
+position = Vector2(-369, 18)
 
 [node name="AsteroidTypeA" parent="." unique_id=2101305267 instance=ExtResource("2_tc5dw")]
 position = Vector2(440, -157)
@@ -22,4 +24,7 @@ max_hp = 5
 position = Vector2(-221, -245)
 size = 0.3
 
-[node name="DebugConsole" parent="." instance=ExtResource("4_con01")]
+[node name="DebugConsole" parent="." unique_id=857938133 instance=ExtResource("4_con01")]
+
+[node name="SkotavorKrustis" parent="." unique_id=1139388353 instance=ExtResource("5_krust")]
+position = Vector2(130, -109)

@@ -37,6 +37,9 @@ Este documento contém a lista de todos os recursos (assets) de terceiros utiliz
 
 ### Efeitos Sonoros (SFX)
 
+- **Player Spawned** por [luminousfridge](https://freesound.org/people/luminousfridge)
+  - Link: [Link do Asset](https://freesound.org/s/496199/)
+  - Licença: [Attribution 4.0](https://creativecommons.org/licenses/by/4.0/)
 - **[Nome da Música/Efeito]** por [Nome do Criador](link-do-perfil)
   - Link: [Link do Asset](link-do-asset)
   - Licença: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)

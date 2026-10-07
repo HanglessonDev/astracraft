@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://pmyvlf2xwfip"]
+
+[ext_resource type="Script" uid="uid://c38rf7ejafpxx" path="res://Source/Systems/Tools/Position/RandomDirection.gd" id="1_inodv"]
+
+[node name="RandomDirection" type="Node" unique_id=722610731]
+script = ExtResource("1_inodv")
